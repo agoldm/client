@@ -16,15 +16,15 @@ const rows = [
 
 function MyStudents() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer>
       <Table aria-label="simple table" style={{"minWidth":660}}>  
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell align="right">Age</TableCell>
-            <TableCell align="right">Sex</TableCell>
-            <TableCell align="right">Country</TableCell>
-            <TableCell align="right">Salary&nbsp;($)</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Phone</TableCell>
+            <TableCell align="right">Courses I'm Teaching Him</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
