@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom';
 import { Box, Typography, Stack, Grid, IconButton } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
+import AccountMenu from "./AccountMenu";
+import NavTabs from "./NavTabs";
 
 function Layout() {
     return (
@@ -23,15 +25,16 @@ function Layout() {
                         </Typography>
                     </Box>
                     <Box>
-                        תפריט
+                        <NavTabs/>
                     </Box>
                     <Box>
-                        <IconButton color="secondary" sx={{ mx: 1 }}>
+                        {/* <IconButton color="secondary" sx={{ mx: 1 }}>
                             <EmailIcon />
-                        </IconButton>
-                        <IconButton color="secondary" sx={{ mx: 1 }}>
+                        </IconButton> */}
+                        {/* <IconButton color="secondary" sx={{ mx: 1 }}>
                             <AccountCircleIcon />
-                        </IconButton>
+                        </IconButton> */}
+                        <AccountMenu />
                     </Box>
                 </Stack>
             </header>
