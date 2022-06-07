@@ -1,7 +1,7 @@
 
 function SideBarMenu(){
     return(
-        <aside>H</aside>
+        <aside>SA</aside>
     );
 }
 
