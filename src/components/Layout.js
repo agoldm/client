@@ -6,6 +6,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 import AccountMenu from "./AccountMenu";
 import NavTabs from "./NavTabs";
+import SideBarMenu from "./SideBarMenu";
 
 function Layout() {
     return (
@@ -42,9 +43,7 @@ function Layout() {
                 <Grid item xs={12} lg={2} sx={{
                     bgcolor: 'red',
                 }}>
-                    <aside>
-                        תפריט צד
-                    </aside>
+                    <SideBarMenu/>
                 </Grid>
                 <Grid item xs={12} lg={10} sx={{ overflowY: 'auto' }}>
                     <Box component='main' sx={{ width: 1, minHeight: '75vh' }}>
