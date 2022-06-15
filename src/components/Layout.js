@@ -41,7 +41,7 @@ function Layout() {
             </header>
             <Grid container sx={{ height: '90vh' }}>
                 <Grid item xs={12} lg={2} sx={{
-                    bgcolor: 'red',
+                    bgcolor: '#EBF2FF',
                 }}>
                     <SideBarMenu/>
                 </Grid>
