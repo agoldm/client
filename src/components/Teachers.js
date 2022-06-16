@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import { Box, ButtonBase, Typography } from '@mui/material';
+import { Box, ButtonBase, Typography, Paper } from '@mui/material';
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    width: '128px',
+    height: '128px',
 });
 function createData(name, age, gender, country) {
     return { name, age, gender, country };
@@ -23,32 +23,31 @@ function Teachers() {
     return (
         <div>
             {teachers.map((i) => (
-                <Box sx={{ width: '100%' , border: '1px dashed grey'}}>
-                    <Grid container spacing={2}>
-                        <Grid item>
-                            <ButtonBase sx={{ width: 128, height: 128 }}>
-                                <Img alt="complex" src="/public/user_profile.png" />
-                            </ButtonBase>
+                <Box sx={{ width: 0.9, m:5 }}>
+                    {/* <Box sx={{ width: '100%', border: '1px dashed grey' }}> */}
+                    <Grid container spacing={5}>
+                        <Grid item xs={2}>
+                            <Paper elevation={4}>
+                                <ButtonBase sx={{ width: 1, height: 1 }}>
+                                    <Img alt="complex" src="./images/user_profile.png" />
+                                </ButtonBase>
+                            </Paper>
                         </Grid>
-                        <Grid item xs={12} sm container>
-                            <Grid item xs container direction="column" spacing={2}>
-                                <Grid item xs>
-                                    <Typography gutterBottom variant="subtitle1" component="div">
-                                        {i.name}
-                                    </Typography>
-                                    <Typography variant="body2" gutterBottom>
-                                        {i.age}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {i.country}
-                                    </Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                                        {i.gender}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
+                        <Grid item xs={10}>
+                            <Paper elevation={4}>
+                                <Typography gutterBottom variant="subtitle1" component="div">
+                                    {i.name}
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    {i.age}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    {i.country}
+                                </Typography>
+                                <Typography sx={{ cursor: 'pointer' }} variant="body2">
+                                    {i.gender}
+                                </Typography>
+                            </Paper>
                         </Grid>
                     </Grid>
                 </Box>
