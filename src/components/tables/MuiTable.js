@@ -69,13 +69,13 @@ const MuiTable = ({ pColumns, pRows, tableProps }) => {
                         .map((row) => (
                             <TableRow hover key={row.id}>
                                 {columns.map((col, index) => (
-                                    <TableCell sx={{
+                                    <TableCell align="center" sx={{
                                         fontSize: "75%",
                                         color: theme.palette.primary.main,
                                     }} key={index}>
                                         {col.key
                                             ? row[col.key]
-                                            : col.cb(row.id)}
+                                            : col.cb(row)}
                                     </TableCell>
                                 ))}
                             </TableRow>

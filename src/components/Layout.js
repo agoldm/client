@@ -7,8 +7,10 @@ import EmailIcon from '@mui/icons-material/Email';
 import AccountMenu from "./AccountMenu";
 import NavTabs from "./NavTabs";
 import SideBarMenu from "./SideBarMenu";
+import { useTheme } from '@mui/material/styles';
 
 function Layout() {
+    const theme = useTheme();
     return (
         <Box sx={{ height: "100vh", width: 1, overflow: 'hidden' }}>
             <header style={{
@@ -21,12 +23,12 @@ function Layout() {
                     bgcolor: "primary.main"
                 }}>
                     <Box>
-                        <Typography variant="h4" color="#fff" sx={{ ml: 1 }}>
+                        <Typography variant="h4" sx={{ ml: 1, color: theme.palette.fifth.main }}>
                             לוגו
                         </Typography>
                     </Box>
                     <Box>
-                        <NavTabs/>
+                        <NavTabs />
                     </Box>
                     <Box>
                         {/* <IconButton color="secondary" sx={{ mx: 1 }}>
@@ -43,14 +45,14 @@ function Layout() {
                 <Grid item xs={12} lg={2} sx={{
                     bgcolor: '#EBF2FF',
                 }}>
-                    <SideBarMenu/>
+                    <SideBarMenu />
                 </Grid>
                 <Grid item xs={12} lg={10} sx={{ overflowY: 'auto' }}>
                     <Box component='main' sx={{ width: 1, minHeight: '75vh' }}>
                         <Outlet />
                     </Box>
                     <Box component='footer' sx={{ width: 1 }}>
-                        <Typography variant="h6" align="center" sx={{ width: 1 }}>
+                        <Typography variant="h6" align="center" sx={{ width: 1, color: theme.palette.fourth.main }}>
                             Shira Doron & Avital Goldman &copy; 2022
                         </Typography>
                     </Box>

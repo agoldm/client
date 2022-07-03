@@ -30,7 +30,7 @@ export default function NavTabs() {
         <LinkTab label="התחברות" href="/login" />
         
         <LinkTab label="הרשמה" href="/register" />
-        <LinkTab label="תמיכהומידע " href="/register" />
+        <LinkTab label="תמיכה ומידע " href="/register" />
         <LinkTab label="חוגים" href="/courses" />
         <LinkTab label="מורים" href="/teachers" />
       </Tabs>

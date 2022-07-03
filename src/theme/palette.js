@@ -1,8 +1,19 @@
 export default {
     primary: {
-        main: "#008B8B",
+        main: "#1d3557",
     },
     secondary: {
-        main: "#F0FFF0"
+        main: "#F1FAEE"
     },
+    third: {
+        main: "#E63946"
+    },
+    fourth: {
+        main: "#457B9D"
+    },
+    fifth: {
+        main: "#A8DADC"
+    }
+
+
 }

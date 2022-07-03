@@ -1,7 +1,10 @@
 import * as React from 'react';
+import useGet from '../api/hooks/useGet';
+
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import { Box, ButtonBase, Typography, Paper } from '@mui/material';
+
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
@@ -11,19 +14,25 @@ const Img = styled('img')({
 function createData(name, age, gender, country) {
     return { name, age, gender, country };
 }
-// add data
-const teachers = [
-    createData('John', 45, 'Male', 'Canada'),
-    createData('Mary', 25, 'Female', 'London'),
-    createData('Nick', 31, 'Male', 'America'),
-    createData('Sunil', 65, 'Male', 'London'),
-    createData('Rebecca', 51, 'Female', 'America'),
-];
+
 function Teachers() {
+
+    const { data, loading, error } = useGet("users/teachers");
+
+    console.log(data);
+    console.log(loading);
+
+    if (loading) {
+        return (<p>loading..</p>)
+    }
+    if (error) {
+        return (<p>error..</p>)
+    }
+
     return (
         <div>
-            {teachers.map((i) => (
-                <Box sx={{ width: 0.9, m:5 }}>
+            {data.map((i) => (
+                <Box sx={{ width: 0.9, m: 5 }}>
                     {/* <Box sx={{ width: '100%', border: '1px dashed grey' }}> */}
                     <Grid container spacing={5}>
                         <Grid item xs={2}>
@@ -39,10 +48,10 @@ function Teachers() {
                                     {i.name}
                                 </Typography>
                                 <Typography variant="body2" gutterBottom>
-                                    {i.age}
+                                    {i.phone}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    {i.country}
+                                    {i.email}
                                 </Typography>
                                 <Typography sx={{ cursor: 'pointer' }} variant="body2">
                                     {i.gender}

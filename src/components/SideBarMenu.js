@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Box, Menu, MenuList, MenuItem, ListItemText, ListItemIcon } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
 function SideBarMenu() {
 
+    let navigate=useNavigate();
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -31,6 +32,12 @@ function SideBarMenu() {
             icon: "",
             role: ""
         },
+        {
+            lable:"ניהול קורסיםּ",
+            to: "/teacher-deshboard",
+            icon: "",
+            role: ""
+        },
     ]
 
     return (
@@ -38,7 +45,7 @@ function SideBarMenu() {
             <MenuList>
                 {itemsList.map((item, index) => {
                     return (
-                        <MenuItem key={index}>
+                        <MenuItem key={index} onClick={()=>navigate(item.to)}>
                             <ListItemIcon>
                                 <DashboardIcon fontSize="small" />
                             </ListItemIcon>
