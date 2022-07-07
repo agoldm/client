@@ -4,17 +4,13 @@ import useGet from '../api/hooks/useGet';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import { Box, ButtonBase, Typography, Paper } from '@mui/material';
-
+import Skeleton from '@mui/material/Skeleton'
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
     width: '128px',
     height: '128px',
 });
-function createData(name, age, gender, country) {
-    return { name, age, gender, country };
-}
-
 function Teachers() {
 
     const { data, loading, error } = useGet("users/teachers");
@@ -23,12 +19,14 @@ function Teachers() {
     console.log(loading);
 
     if (loading) {
-        return (<p>loading..</p>)
+        return (<p><Skeleton
+            shape="rectangle"
+            sx={{ width: 1, height: 1, m: 5 }}
+        /></p>)
     }
     if (error) {
         return (<p>error..</p>)
     }
-
     return (
         <div>
             {data.map((i) => (

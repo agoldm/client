@@ -48,7 +48,7 @@ const MuiTable = ({ pColumns, pRows, tableProps }) => {
                     <TableRow>
                         {columns.map((col, index) => (
                             <TableCell align="center" sx={{
-                                color: theme.palette.primary.main,
+                                color: theme.palette.third.main,
                                 fontWeight: 'bold'
                             }} key={index}>
                                 {col.title}
@@ -71,7 +71,7 @@ const MuiTable = ({ pColumns, pRows, tableProps }) => {
                                 {columns.map((col, index) => (
                                     <TableCell align="center" sx={{
                                         fontSize: "75%",
-                                        color: theme.palette.primary.main,
+                                        color: theme.palette.primary.sec,
                                     }} key={index}>
                                         {col.key
                                             ? row[col.key]

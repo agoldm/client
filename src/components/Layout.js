@@ -1,9 +1,7 @@
 import React from "react";
 import { Outlet } from 'react-router-dom';
 
-import { Box, Typography, Stack, Grid, IconButton } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import EmailIcon from '@mui/icons-material/Email';
+import { Box, Typography, Stack, Grid } from '@mui/material';
 import AccountMenu from "./AccountMenu";
 import NavTabs from "./NavTabs";
 import SideBarMenu from "./SideBarMenu";
