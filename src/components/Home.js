@@ -1,26 +1,30 @@
 import React from "react";
-import MuiTable from "./tables/MuiTable";
-
-const columns = [
-    { title: "A", key: "a" },
-    { title: "B", key: "b", sort: true },
-    { title: "C", key: "c" },
-    { title: "C", cb: () => { return "hello" } }
-];
-
-const rows = [
-    { id: 1, a: "A 1", b: "B 1", c: "C 1" },
-    { id: 2, a: "A 2", b: "B 2", c: "C 2" },
-    { id: 3, a: "A 3", b: "B 3", c: "C 3" },
-]
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Typography, Grid, Stack, Button } from "@mui/material";
+let loadingGif = require("../study.gif");
 
 function Home() {
     return (
-        <div>
-            <MuiTable pColumns={columns} pRows={rows} tableProps={{}} />
-        </div>
+        <Grid container>
+            <Grid item xs={5}>
+                <Stack direction="column" spacing={2} alignItems="center" sx={{ py: 5, px: 2, width: 1, mt: 10 }}>
+                    <Typography variant="h4">שוגי אתר החוגים הגדול בישראל</Typography>
+                    <Typography variant="subtitle2">
+                        אתר זה הוקם על ידי מורים פרטיים על מנת לענות על הפער הקיים במציאת חוגים פרטים באינטרנט.
+                        כיום, האתר הינו לוח החוגים הגדול בישראל.
+                        באתר ניתן למצוא מורים המעבירים חוגים פרטיים בכל המקצועות ובכל הארץ. לכל מורה יש פרופיל מפורט.
+                        הוספת פרופיל מורה פרטי וחיפוש שיעור פרטי הינם בחינם.
+                        נשמח לקבל תגובות ,הצעות לשיפור ותחומי לימוד חדשים.
+                    </Typography>
+                    <Button variant="contained" size="large" endIcon={<ArrowBackIcon />}>
+                        מצא חוג עכשיו
+                    </Button>
+                </Stack>
+            </Grid>
+            <Grid item xs={7}>
+                <img style={{ alignSelf: 'center' }} src={loadingGif} alt="wait until the page loads" />
+            </Grid>
+        </Grid>
     );
 }
-
 export default Home;

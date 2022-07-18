@@ -29,6 +29,6 @@ export default function useGet(endPoint) {
         getData();
     }, [endPoint]);
 
-    return { data, loading, error };
+    return { getData, data, loading, error };
 
 }

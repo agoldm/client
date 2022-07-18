@@ -3,7 +3,8 @@ export default {
         main: "#1d3557",
     },
     secondary: {
-        main: "#F1FAEE"
+        //main: "#F1FAEE"
+        main: "#EBF2FF"
     },
     third: {
         main: "#E63946"
