@@ -1,7 +1,9 @@
 import * as React from 'react';
+
 import useGet from '../api/hooks/useGet';
 import { Grid, Card, Box, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
-
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { alignProperty } from '@mui/material/styles/cssUtils';
 function Courses() {
     const { data, loading, error } = useGet("courses");
 
@@ -47,9 +49,13 @@ function Courses() {
                                 </CardActionArea>
                                 <CardActions>
                                     <Button size="small" color="primary">
-                                        Share
+                                        הירשם
                                     </Button>
+                                    <Box sx={{ alignItems: 'left',mx: 15}}>
+                                        <FavoriteBorderOutlinedIcon />
+                                    </Box>
                                 </CardActions>
+
                                 {/* </ImageListItem> */}
                             </Card>
                         </Grid>

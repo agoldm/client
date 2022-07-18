@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Box, TextField, Button, Stack, Typography, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
+import { Box, TextField, Button, Stack, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import terms from "../constants/terms"
-
+import usePost from '../api/hooks/usePost';
 function Register({ open, setOpen }) {
 
     const [name, setName] = React.useState("");
@@ -13,6 +13,7 @@ function Register({ open, setOpen }) {
     const [confirmPassword, setConfirmPassword] = React.useState("");
 
     const [error, setError] = React.useState(false);
+
 
     const registerSubmit = (e) => {
         e.preventDefault();

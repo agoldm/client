@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Teachers from "./components/Teachers";
 import Courses from "./components/Courses";
 import TeacherDeshBoard from "./components/TeacherDeshBoard";
+import Register from "./components/Register";
 
 function Routers() {
     return (
@@ -15,6 +16,7 @@ function Routers() {
                 <Route path="/teachers" element={<Teachers />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/teacher-deshboard" element={<TeacherDeshBoard />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="*" element={<div>Not Found</div>} />
             </Route>
         </Routes>

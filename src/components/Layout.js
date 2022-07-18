@@ -8,7 +8,7 @@ import SideBarMenu from "./SideBarMenu";
 import { useTheme } from '@mui/material/styles';
 import Login from "./Login";
 import Register from "./Register";
-
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 function Layout() {
     const theme = useTheme();
 
@@ -43,6 +43,7 @@ function Layout() {
                         <Button variant="contained" color="secondary" size="small" onClick={() => setRegisterDialog(true)}>
                             הרשמה
                         </Button>
+                        <AddShoppingCartOutlinedIcon color="secondary" />
                         <AccountMenu />
                     </Stack>
                 </Stack>

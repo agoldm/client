@@ -1,9 +1,12 @@
 import React from "react";
+
+import { useNavigate } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Typography, Grid, Stack, Button } from "@mui/material";
 let loadingGif = require("../study.gif");
 
 function Home() {
+    let navigate = useNavigate();
     return (
         <Grid container>
             <Grid item xs={5}>
@@ -16,7 +19,7 @@ function Home() {
                         הוספת פרופיל מורה פרטי וחיפוש שיעור פרטי הינם בחינם.
                         נשמח לקבל תגובות ,הצעות לשיפור ותחומי לימוד חדשים.
                     </Typography>
-                    <Button variant="contained" size="large" endIcon={<ArrowBackIcon />}>
+                    <Button onClick={() => navigate("courses")} variant="contained" size="large" endIcon={<ArrowBackIcon />}>
                         מצא חוג עכשיו
                     </Button>
                 </Stack>
