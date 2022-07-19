@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:8080/";
 
 export default {
     get(endPoint) {
@@ -23,10 +23,11 @@ async function ajax(endPoint, method = "GET", data = {}) {
                 "Content-Type": "application/json"
             },
             method: method,
-            data: method === "GET" ? null : JSON.stringify(data)
+            body: method === "GET" ? null : JSON.stringify(data)
         });
         const json = await response.json();
-        return json.data;
+        console.log(json);
+        return json;
     } catch (error) {
         console.log(error);
         throw error;

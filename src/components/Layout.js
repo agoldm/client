@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from 'react-router-dom';
-
+import { styled } from '@mui/material/styles';
 import { Box, Typography, Stack, Grid, Container, AppBar, Button } from '@mui/material';
 import AccountMenu from "./AccountMenu";
 import NavTabs from "./NavTabs";
@@ -10,6 +10,12 @@ import Login from "./Login";
 import Register from "./Register";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 function Layout() {
+    const Img = styled('img')({
+        margin: 'auto',
+        display: 'block',
+        width: '170px',
+        height: '70px',
+    });
     const theme = useTheme();
 
     const [loginDialog, setLoginDialog] = React.useState(false);
@@ -29,9 +35,7 @@ function Layout() {
                     bgcolor: "primary.main"
                 }}>
                     <Box>
-                        <Typography variant="h4" sx={{ ml: 1, color: theme.palette.fifth.main }}>
-                            לוגו
-                        </Typography>
+                        <Img alt="complex" src="./logo.png" />
                     </Box>
                     <Box>
                         <NavTabs />

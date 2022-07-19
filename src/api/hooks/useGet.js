@@ -15,7 +15,7 @@ export default function useGet(endPoint) {
 
         try {
             const res = await http.get(endPoint);
-            setData(res);
+            setData(res.data);
         } catch (error) {
             console.log(error);
             setError(true);

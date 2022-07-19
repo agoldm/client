@@ -2,18 +2,13 @@ import React from "react";
 import http from '../http';
 
 // react hook to post data from backend
-export default function usePost(endpoint, body = null){
+export default function usePost(endpoint){
         
         const [data, setData] = React.useState(null);
         const [loading, setLoading] = React.useState(false);
         const [error, setError] = React.useState(false);
-
-        const [bodyS, setBodyS] = React.useState(body);
-        React.useEffect(() => {
-            setBodyS(body)
-        },[body])
         
-        const getData = async () => {
+        const getData = async (body) => {
             setLoading(true);
             try {
                 const res = await http.post(endpoint, body);
@@ -27,5 +22,5 @@ export default function usePost(endpoint, body = null){
             }  
         }
 
-        return { getData, data, loading, error };
+        return { getData, data, loading, error, setError };
     }

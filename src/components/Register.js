@@ -4,6 +4,8 @@ import { Box, TextField, Button, Stack, Dialog, DialogTitle, DialogContent, Icon
 import CloseIcon from '@mui/icons-material/Close';
 import terms from "../constants/terms"
 import usePost from '../api/hooks/usePost';
+import {crypt} from "../utils/helper"
+
 function Register({ open, setOpen }) {
 
     const [name, setName] = React.useState("");
@@ -12,15 +14,16 @@ function Register({ open, setOpen }) {
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
 
-    const [error, setError] = React.useState(false);
-
+    const { getData, data, loading, error, setError } = usePost("register");
 
     const registerSubmit = (e) => {
+
         e.preventDefault();
+
         if (password !== confirmPassword) return setError(true);
-        let user = { name, email, username, password, confirmPassword };
-        setError(false);
-        console.log(user);
+
+        getData({ name, email, username, password: crypt.encrypt(password) });
+        
     }
 
     return (
@@ -37,13 +40,13 @@ function Register({ open, setOpen }) {
                             justifyContent="center"
                             alignItems="center"
                             spacing={2}
-                            sx={{ width: 1, height: 1 }}>
-
-                            <TextField onChange={(e) => setName(e.target.value)} label="שם מלא" variant="outlined" />
-                            <TextField onChange={(e) => setEmail(e.target.value)} label="אימייל" type='email' variant="outlined" />
-                            <TextField onChange={(e) => setUsername(e.target.value)} label={terms("username")} variant="outlined" />
-                            <TextField error={error} onChange={(e) => setPassword(e.target.value)} label="סיסמה" type='password' variant="outlined" />
-                            <TextField error={error} onChange={(e) => setConfirmPassword(e.target.value)} label="אימות סיסמה" type='password' variant="outlined" />
+                            sx={{ width: 1, height: 1 }}
+                        >
+                            <TextField onChange={(e) => setName(e.target.value)} required label="שם מלא" variant="outlined" />
+                            <TextField onChange={(e) => setEmail(e.target.value)} required label="אימייל" type='email' variant="outlined" />
+                            <TextField onChange={(e) => setUsername(e.target.value)} required label={terms("username")} variant="outlined" />
+                            <TextField error={error} onChange={(e) => setPassword(e.target.value)} required label="סיסמה" type='password' variant="outlined" />
+                            <TextField error={error} onChange={(e) => setConfirmPassword(e.target.value)} required label="אימות סיסמה" type='password' variant="outlined" />
                             <Button type='submit' variant="contained">כניסה</Button>
                         </Stack>
                     </form>

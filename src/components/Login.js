@@ -2,16 +2,22 @@ import React from "react";
 
 import { Box, TextField, Button, Stack, Typography, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import usePost from '../api/hooks/usePost';
+import { crypt } from "../utils/helper"
 
 function Login({ open, setOpen }) {
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const loginSubmit = () => {
-        let user = { username, password };
-        console.log(user);
+    const { getData, data, loading, error, setError } = usePost("login");
+
+    const loginSubmit = (e) => {
+        e.preventDefault();
+        getData({ username, password: crypt.encrypt(password) });
     }
+
+    console.log(data);
 
     return (
         <Dialog open={open}>
@@ -28,9 +34,11 @@ function Login({ open, setOpen }) {
                         alignItems="center"
                         spacing={2}
                         sx={{ width: 1, height: 1 }}>
-                        <TextField onChange={(e) => setUsername(e.target.value)} label="שם משתמש" variant="outlined" />
-                        <TextField onChange={(e) => setPassword(e.target.value)} label="סיסמה" type='password' variant="outlined" />
-                        <Button onClick={loginSubmit} variant="contained">כניסה</Button>
+                        <form onSubmit={loginSubmit}>
+                            <TextField onChange={(e) => setUsername(e.target.value)} label="שם משתמש" variant="outlined" />
+                            <TextField onChange={(e) => setPassword(e.target.value)} label="סיסמה" type='password' variant="outlined" />
+                            <Button type="submit" variant="contained">כניסה</Button>
+                        </form>
                     </Stack>
                 </Box>
             </DialogContent>
