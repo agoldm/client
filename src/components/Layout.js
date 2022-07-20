@@ -35,7 +35,7 @@ function Layout() {
                     bgcolor: "primary.main"
                 }}>
                     <Box>
-                        <Img alt="complex" src="./logo.png" />
+                        <Img alt="complex" src="./logoShugi.png" />
                     </Box>
                     <Box>
                         <NavTabs />
