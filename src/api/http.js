@@ -27,6 +27,7 @@ async function ajax(endPoint, method = "GET", data = {}) {
         });
         const json = await response.json();
         console.log(json);
+        if (json.error) throw json.error;
         return json;
     } catch (error) {
         console.log(error);

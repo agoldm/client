@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { Box, TextField, Button, Stack, Typography, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
+import { Box, TextField, Button, Alert, Stack, Typography, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import usePost from '../api/hooks/usePost';
 import { crypt } from "../utils/helper"
+import Context from "../context";
 
 function Login({ open, setOpen }) {
+
+    const { setUser } = React.useContext(Context);
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -16,9 +19,13 @@ function Login({ open, setOpen }) {
         e.preventDefault();
         getData({ username, password: crypt.encrypt(password) });
     }
-
-    console.log(data);
-
+    //לעדכן בקונטקסט אישור יוזר
+    useEffect(() => {
+        if (data && data.login) {
+            setUser(data)
+            setOpen(false)
+        }
+    }, [data]);
     return (
         <Dialog open={open}>
             <DialogTitle>התחברות</DialogTitle>
@@ -26,20 +33,22 @@ function Login({ open, setOpen }) {
                 <CloseIcon />
             </IconButton>
             <DialogContent>
-
                 <Box sx={{ width: 1 }}>
-                    <Stack
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={2}
-                        sx={{ width: 1, height: 1 }}>
-                        <form onSubmit={loginSubmit}>
+                    <form onSubmit={loginSubmit}>
+                        <Stack
+                            direction="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={2}
+                            sx={{ width: 1, height: 1 }}>
+                            {error && <Alert variant="filled" severity="error">
+                                שם משתמש או סיסמא לא נכונים
+                            </Alert>}
                             <TextField onChange={(e) => setUsername(e.target.value)} label="שם משתמש" variant="outlined" />
                             <TextField onChange={(e) => setPassword(e.target.value)} label="סיסמה" type='password' variant="outlined" />
                             <Button type="submit" variant="contained">כניסה</Button>
-                        </form>
-                    </Stack>
+                        </Stack>
+                    </form>
                 </Box>
             </DialogContent>
         </Dialog>

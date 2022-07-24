@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, Box, TextField, Grid, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
+import usePost from '../../api/hooks/usePost';
 function CourseForm({ open, setOpen }) {
 
     const [inputs, setInputs] = React.useState({});
@@ -10,17 +10,22 @@ function CourseForm({ open, setOpen }) {
 
     const onChange = (e) => {
         setInputs({ ...inputs, [e.target.name]: e.target.value })
+        console.log(inputs);
     }
-
+    const { getData, data, loading, error, setError } = usePost("courses/uploaded_file");
     const onSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
         for (const input in inputs) {
             formData.append(input, inputs[input])
         }
-        console.log(formData);
+        setImage(e.target.files[0])
+        formData.append('File', setImage);
+        getData(formData)
     }
-
+    const values = {
+        someDate: "2017-05-24"
+    };
     return (
         <Dialog open={open} fullWidth maxWidth='lg'>
             <IconButton onClick={() => { setOpen(false) }} sx={{ position: "absolute", right: 10, top: 10 }}>
@@ -77,20 +82,24 @@ function CourseForm({ open, setOpen }) {
                                     onChange={onChange}
                                 />
                                 <TextField
-                                    required
                                     variant='outlined'
-                                    label='תאריך התחלה'
                                     name="start_date"
+                                    label="תאריך התחלה"
+                                    InputLabelProps={{ shrink: true, required: true }}
+                                    type="date"
                                     value={inputs['start_date'] || ""}
                                     onChange={onChange}
                                 />
                                 <TextField
-                                    required
-                                    variant='outlined'
-                                    label='תאריך סיום'
+
+                                    variant="outlined"
                                     name="end_date"
+                                    label="תאריך סיום"
+                                    InputLabelProps={{ shrink: true, required: true }}
+                                    type="date"
                                     value={inputs['end_date'] || ""}
                                     onChange={onChange}
+                                //defaultValue={values.someDate.format("YYYY-MM-DD")}
                                 />
                                 <TextField
                                     required
@@ -116,10 +125,13 @@ function CourseForm({ open, setOpen }) {
                         <Grid item xs={12}>
                             <Stack direction="row" justifyContent="center" spacing={2}>
                                 <Button variant='contained' type='submit'>שמירה</Button>
-                                {/* <Button variant='contained' type='upload' component="label">העלאת תמונה<input
-                                    type="file"
-                                    hidden
-                                /></Button> */}
+                                <Button variant='contained' type='upload' component="label" >העלאת תמונה
+                                    <input 
+                                        onChange={onChange}
+                                        name="uploaded_file"
+                                        type="file"
+                                        hidden
+                                    /></Button>
                             </Stack>
                         </Grid>
                     </Grid>

@@ -6,15 +6,19 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./theme";
 import cacheRtl from "./theme/cacheRtl";
+import ContextProvider from './context/ContextProvider';
+
 
 function App() {
   return (
-    <CacheProvider value={cacheRtl}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Routers />
-      </ThemeProvider>
-    </CacheProvider>
+    <ContextProvider>
+      <CacheProvider value={cacheRtl}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routers />
+        </ThemeProvider>
+      </CacheProvider>
+    </ContextProvider>
   );
 }
 

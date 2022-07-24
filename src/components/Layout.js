@@ -9,7 +9,12 @@ import { useTheme } from '@mui/material/styles';
 import Login from "./Login";
 import Register from "./Register";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import Context from "../context";
+
 function Layout() {
+
+    const { user } = React.useContext(Context);
+
     const Img = styled('img')({
         margin: 'auto',
         display: 'block',
@@ -41,14 +46,18 @@ function Layout() {
                         <NavTabs />
                     </Box>
                     <Stack direction="row" alignItems="center" spacing={2} sx={{ height: 0.5 }}>
-                        <Button color="secondary" size="small" onClick={() => setLoginDialog(true)}>
-                            התחברות
-                        </Button>
-                        <Button variant="contained" color="secondary" size="small" onClick={() => setRegisterDialog(true)}>
-                            הרשמה
-                        </Button>
-                        <AddShoppingCartOutlinedIcon color="secondary" />
-                        <AccountMenu />
+                        {!user && <>
+                            <Button color="secondary" size="small" onClick={() => setLoginDialog(true)}>
+                                התחברות
+                            </Button>
+                            <Button variant="contained" color="secondary" size="small" onClick={() => setRegisterDialog(true)}>
+                                הרשמה
+                            </Button>
+                        </>}
+                        {user && <>
+                            <AddShoppingCartOutlinedIcon color="secondary" />
+                            <AccountMenu />
+                        </>}
                     </Stack>
                 </Stack>
             </header>
