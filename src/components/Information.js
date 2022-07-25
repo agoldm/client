@@ -60,7 +60,7 @@ function Information() {
                 </Typography>
                 <Typography variant="h6" >  שאלות ותשובות </Typography>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                    <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
                         <Typography>איך יוצרים קשר עם המורה? </Typography>
                     </AccordionSummary>
                     <AccordionDetails>

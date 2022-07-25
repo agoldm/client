@@ -4,11 +4,9 @@ import useGet from '../api/hooks/useGet';
 import { Grid, Card, Box, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { alignProperty } from '@mui/material/styles/cssUtils';
+
 function Courses() {
     const { data, loading, error } = useGet("courses");
-
-    console.log(data);
-    console.log(loading);
 
     if (loading) {
         return (<p>loading..</p>)
@@ -18,24 +16,18 @@ function Courses() {
     }
     return (
         <Box sx={{ width: 0.9, m: 'auto' }}>
-            <Grid container spacing={4}>
+            <Grid container spacing={6}>
                 {/* // <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}> */}
                 {
                     data.map((item) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
+                        <Grid item xs={16} sm={6} md={4} lg={3}>
                             <Card>
-                                {/* <ImageListItem key={item.img}> */}
-                                {/* <img
-                                    src={`${item.img}?w=161&fit=crop&auto=format`}
-                                    srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
-                                    alt={item.title}
-                                    loading="lazy"
-                                /> */}
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
                                         height="140"
-                                        image={`${item.image}?w=161&fit=crop&auto=format`}
+                                        src={`http://localhost:8080/${item.image}`}
+                                        image={`http://localhost:8080//${item.image}`}
                                         alt="green iguana"
                                     />
                                     <CardContent>

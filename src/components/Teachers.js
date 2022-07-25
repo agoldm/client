@@ -36,7 +36,7 @@ function Teachers() {
                         <Grid item xs={2}>
                             <Paper elevation={4}>
                                 <ButtonBase sx={{ width: 1, height: 1 }}>
-                                    <Img alt="complex" src="./images/user_profile.png" />
+                                    <Img alt="complex" src={`http://localhost:8080/${i.image}`}/>
                                 </ButtonBase>
                             </Paper>
                         </Grid>

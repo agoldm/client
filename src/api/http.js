@@ -35,3 +35,17 @@ async function ajax(endPoint, method = "GET", data = {}) {
         //return { error: true, message: "server error" };
     }
 }
+
+export async function uploadFile(endPoint, method = "POST", data = {}) {
+    try {
+        const response = await fetch(`${BASE_URL}${endPoint}`, {
+            method: method,
+            body: data
+        });
+        const json = await response.json();
+        if (json.error) throw json.error;
+        return json;
+    } catch (error) {
+        throw error;
+    }
+}

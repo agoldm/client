@@ -12,6 +12,10 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import http from '../api/http';
+
+
+
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -84,7 +88,15 @@ export default function AccountMenu() {
           אפס סיסמא
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={async () => {
+          try {
+            let res = await http.get("logout");
+            localStorage.clear();
+            window.location.reload();
+          } catch (error) {
+            console.log("55555555555555555555");
+          }
+        }}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

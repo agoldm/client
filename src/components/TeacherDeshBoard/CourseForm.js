@@ -1,31 +1,45 @@
-import * as React from 'react';
+import React, { useEffect } from "react";
 
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Box, TextField, Grid, Stack } from '@mui/material';
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, Box, TextField, Grid, Stack, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import usePost from '../../api/hooks/usePost';
+import { uploadFile } from '../../api/http'
+import { formatDateJS } from "../../utils/helper"
+
+
 function CourseForm({ open, setOpen }) {
 
-    const [inputs, setInputs] = React.useState({});
+    const [inputs, setInputs] = React.useState({
+        start_date: formatDateJS(),
+        end_date: formatDateJS(),
+        time: 1
+    });
     const [image, setImage] = React.useState(null)
 
     const onChange = (e) => {
         setInputs({ ...inputs, [e.target.name]: e.target.value })
         console.log(inputs);
     }
-    const { getData, data, loading, error, setError } = usePost("courses/uploaded_file");
-    const onSubmit = (e) => {
+    const { getData, data, loading, error, setError } = usePost("courses/");
+
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        for (const input in inputs) {
-            formData.append(input, inputs[input])
+        try {
+            const formData = new FormData();
+            formData.append('File', image);
+            let res = await uploadFile("courses/uploaded_file", "POST", formData);
+            getData({ ...inputs, image: res.imagePath })
+        } catch (error) {
+            return;
         }
-        setImage(e.target.files[0])
-        formData.append('File', setImage);
-        getData(formData)
+
     }
-    const values = {
-        someDate: "2017-05-24"
-    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (data && data.success) setOpen(false)
+        }, 3000);
+    }, [data]);
     return (
         <Dialog open={open} fullWidth maxWidth='lg'>
             <IconButton onClick={() => { setOpen(false) }} sx={{ position: "absolute", right: 10, top: 10 }}>
@@ -126,8 +140,8 @@ function CourseForm({ open, setOpen }) {
                             <Stack direction="row" justifyContent="center" spacing={2}>
                                 <Button variant='contained' type='submit'>שמירה</Button>
                                 <Button variant='contained' type='upload' component="label" >העלאת תמונה
-                                    <input 
-                                        onChange={onChange}
+                                    <input
+                                        onChange={(e) => setImage(e.target.files[0])}
                                         name="uploaded_file"
                                         type="file"
                                         hidden
@@ -135,7 +149,11 @@ function CourseForm({ open, setOpen }) {
                             </Stack>
                         </Grid>
                     </Grid>
-
+                </Box>
+                <Box>
+                {(data && data.success) && <Alert variant="filled" severity="success">
+                    הקורס נוסף בהצלחה
+                </Alert>}
                 </Box>
             </DialogContent>
         </Dialog>

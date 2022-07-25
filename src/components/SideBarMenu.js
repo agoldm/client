@@ -30,7 +30,7 @@ function SideBarMenu() {
         },
         {
             lable: "המורים שלי",
-            to: "/",
+            to: "/student-deshboard",
             icon: <SchoolIcon />,
             role: ""
         },
