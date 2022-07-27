@@ -27,11 +27,8 @@ function Layout() {
     const [registerDialog, setRegisterDialog] = React.useState(false);
 
     return (
-        <Box sx={{ height: "100vh", width: 1, overflow: 'hidden' }}>
-            <header style={{
-                height: '10vh',
-                width: '100%'
-            }} >
+        <Box>
+            <AppBar component="header">
                 <Login open={loginDialog} setOpen={setLoginDialog} />
                 <Register open={registerDialog} setOpen={setRegisterDialog} />
                 <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} sx={{
@@ -60,13 +57,20 @@ function Layout() {
                         </>}
                     </Stack>
                 </Stack>
-            </header>
-            <Grid container sx={{ height: '90vh' }}>
+            </AppBar>
+            <Grid container sx={{ height: '90vh', pt: 10 }}>
                 <Grid item xs={12} lg={2} sx={{
+                    position: "relative",
                     bgcolor: '#EBF2FF',
                     zIndex: 10
                 }}>
-                    <SideBarMenu />
+                    <Box sx={{
+                        position: "absolute",
+                        top: "0px",
+                        left:"0px"
+                    }}>
+                        <SideBarMenu />
+                    </Box>
                 </Grid>
                 <Grid item xs={12} lg={10} sx={{ overflowY: 'auto' }}>
                     <Container>

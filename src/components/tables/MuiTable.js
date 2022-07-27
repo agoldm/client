@@ -67,7 +67,7 @@ const MuiTable = ({ pColumns, pRows, tableProps }) => {
                 <TableBody>
                     {rows.sort(handleSort)
                         .map((row) => (
-                            <TableRow hover key={row.id}>
+                            <TableRow hover key={row._id}>
                                 {columns.map((col, index) => (
                                     <TableCell align="center" sx={{
                                         fontSize: "75%",

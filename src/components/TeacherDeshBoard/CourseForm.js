@@ -1,45 +1,71 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, Box, TextField, Grid, Stack, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import usePost from '../../api/hooks/usePost';
 import { uploadFile } from '../../api/http'
 import { formatDateJS } from "../../utils/helper"
+import usePut from "../../api/hooks/usePut";
+import useHttp from "../../api/hooks/useHttp";
 
 
-function CourseForm({ open, setOpen }) {
+function CourseForm({ open, setOpen, initInputs, isNew }) {
 
-    const [inputs, setInputs] = React.useState({
-        start_date: formatDateJS(),
-        end_date: formatDateJS(),
-        time: 1
-    });
+    const [method, setMethod] = React.useState("POST");
+    const [inputs, setInputs] = React.useState({});
     const [image, setImage] = React.useState(null)
+
+    const { getData, data, loading, error, setError, init } = useHttp("courses/", method);
+
+    React.useEffect(() => {
+        init();
+        if (isNew) {
+            setInputs({
+                start_date: formatDateJS(),
+                end_date: formatDateJS(),
+                time: 1
+            })
+            setMethod("POST")
+        } else {
+            setInputs(initInputs)
+            setMethod("PUT")
+        }
+    }, [isNew]); 
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            if (data && data.success) setOpen(false)
+        }, 3000);
+    }, [data]);
+    
 
     const onChange = (e) => {
         setInputs({ ...inputs, [e.target.name]: e.target.value })
         console.log(inputs);
     }
-    const { getData, data, loading, error, setError } = usePost("courses/");
-
+    
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            const formData = new FormData();
-            formData.append('File', image);
-            let res = await uploadFile("courses/uploaded_file", "POST", formData);
-            getData({ ...inputs, image: res.imagePath })
+            if(image){
+                const formData = new FormData();
+                formData.append('File', image);
+                let res = await uploadFile("courses/uploaded_file", "POST", formData);
+                getData({ ...inputs, image: res.imagePath })
+            }else{
+                getData(inputs)
+            }         
         } catch (error) {
             return;
         }
 
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            if (data && data.success) setOpen(false)
-        }, 3000);
-    }, [data]);
+    
+
+    React.useEffect(() => {
+        init();
+    }, []);
     return (
         <Dialog open={open} fullWidth maxWidth='lg'>
             <IconButton onClick={() => { setOpen(false) }} sx={{ position: "absolute", right: 10, top: 10 }}>
@@ -151,9 +177,9 @@ function CourseForm({ open, setOpen }) {
                     </Grid>
                 </Box>
                 <Box>
-                {(data && data.success) && <Alert variant="filled" severity="success">
-                    הקורס נוסף בהצלחה
-                </Alert>}
+                    {(data && data.success) && <Alert variant="filled" severity="success">
+                        הקורס נוסף בהצלחה
+                    </Alert>}
                 </Box>
             </DialogContent>
         </Dialog>

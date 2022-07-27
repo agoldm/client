@@ -26,11 +26,9 @@ async function ajax(endPoint, method = "GET", data = {}) {
             body: method === "GET" ? null : JSON.stringify(data)
         });
         const json = await response.json();
-        console.log(json);
         if (json.error) throw json.error;
         return json;
     } catch (error) {
-        console.log(error);
         throw error;
         //return { error: true, message: "server error" };
     }

@@ -14,14 +14,20 @@ import DeleteForm from '../DeleteForm';
 function TeacherDeshBoard() {
 
     const { getData, data, loading, error } = useGet("courses/my-courses");
+
     const [addBtnLable, setBtnLable] = React.useState("");
 
     const [currentID, setCurrentID] = React.useState(null);
+
     const [courseFormOpen, setCourseOpen] = React.useState(false);
+    const [courseFormObject, setCourseFormObject] = React.useState({});
+    const [courseFormIsNew, setCourseFormIsNew] = React.useState(false);
+
     const [deleteFormOpen, setDeleteOpen] = React.useState(false);
 
-    console.log(data);
-    console.log(loading);
+    React.useEffect(() => {
+        if(!courseFormOpen) getData();
+    },[courseFormOpen])
 
     if (loading) {
         return (<p>loading..</p>)
@@ -41,15 +47,18 @@ function TeacherDeshBoard() {
             title: "", cb: (row) => {
                 return (
                     <div>
-                        <IconButton>
-                            <ModeEditOutlinedIcon onClick={() => { setCourseOpen(true) }} />
+                        <IconButton onClick={() => {
+                                setCourseFormIsNew(false)
+                                setCourseFormObject(row)
+                                setCourseOpen(true)
+                            }} >
+                            <ModeEditOutlinedIcon />
                         </IconButton>
-                        <IconButton>
-                            <DeleteIcon onClick={() => {
+                        <IconButton onClick={() => {
                                 setCurrentID(row._id)
                                 setDeleteOpen(true);
-
-                            }} />
+                            }}>
+                            <DeleteIcon />
                         </IconButton>
                     </div>
                 )
@@ -59,7 +68,7 @@ function TeacherDeshBoard() {
 
     return (
         <Box>
-            <CourseForm open={courseFormOpen} setOpen={setCourseOpen} />
+            <CourseForm open={courseFormOpen} setOpen={setCourseOpen} isNew={courseFormIsNew} initInputs={courseFormObject} />
             <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
@@ -71,7 +80,10 @@ function TeacherDeshBoard() {
                         startIcon={<AddBoxIcon />}
                         onMouseEnter={() => setBtnLable("הוספת קורס")}
                         onMouseLeave={() => setBtnLable("")}
-                        onClick={() => { setCourseOpen(true) }}
+                        onClick={() => {
+                            setCourseFormIsNew(true)
+                            setCourseOpen(true)
+                        }}
                     >
                         {addBtnLable}
                     </Button>
