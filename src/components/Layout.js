@@ -52,8 +52,11 @@ function Layout() {
                             </Button>
                         </>}
                         {user && <>
+                        {/* <sup>1</sup> */}
                             <AddShoppingCartOutlinedIcon color="secondary" />
+                            
                             <AccountMenu />
+                            
                         </>}
                     </Stack>
                 </Stack>

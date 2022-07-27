@@ -30,38 +30,38 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
             setInputs(initInputs)
             setMethod("PUT")
         }
-    }, [isNew]); 
+    }, [isNew]);
 
     React.useEffect(() => {
         setTimeout(() => {
             if (data && data.success) setOpen(false)
         }, 3000);
     }, [data]);
-    
+
 
     const onChange = (e) => {
         setInputs({ ...inputs, [e.target.name]: e.target.value })
         console.log(inputs);
     }
-    
+
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            if(image){
+            if (image) {
                 const formData = new FormData();
                 formData.append('File', image);
                 let res = await uploadFile("courses/uploaded_file", "POST", formData);
                 getData({ ...inputs, image: res.imagePath })
-            }else{
+            } else {
                 getData(inputs)
-            }         
+            }
         } catch (error) {
             return;
         }
 
     }
 
-    
+
 
     React.useEffect(() => {
         init();
@@ -104,6 +104,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                 <TextField
                                     required
                                     variant='outlined'
+                                    type="number"
                                     label='כמות תלמידים מקסימלית'
                                     name="max_student"
                                     value={inputs['max_student'] || ""}
@@ -117,8 +118,8 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                     required
                                     variant='outlined'
                                     label='משך זמן השיעור'
-                                    name="time"
-                                    value={inputs['time'] || ""}
+                                    name="long"
+                                    value={inputs['long'] || ""}
                                     onChange={onChange}
                                 />
                                 <TextField
@@ -143,6 +144,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                 />
                                 <TextField
                                     required
+                                    type="number"
                                     variant='outlined'
                                     label='מחיר'
                                     name="price_per_time"
