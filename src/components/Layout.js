@@ -1,60 +1,93 @@
 import React from "react";
 import { Outlet } from 'react-router-dom';
-
-import { Box, Typography, Stack, Grid, IconButton } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import EmailIcon from '@mui/icons-material/Email';
+import { styled } from '@mui/material/styles';
+import { Box, Typography, Stack, Grid, Container, AppBar, Button } from '@mui/material';
 import AccountMenu from "./AccountMenu";
 import NavTabs from "./NavTabs";
+import SideBarMenu from "./SideBarMenu";
+import { useTheme } from '@mui/material/styles';
+import Login from "./Login";
+import Register from "./Register";
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import Context from "../context";
 
 function Layout() {
+
+    const { user } = React.useContext(Context);
+
+    const Img = styled('img')({
+        margin: 'auto',
+        display: 'block',
+        width: '170px',
+        height: '70px',
+    });
+    const theme = useTheme();
+
+    const [loginDialog, setLoginDialog] = React.useState(false);
+    const [registerDialog, setRegisterDialog] = React.useState(false);
+
     return (
-        <Box sx={{ height: "100vh", width: 1, overflow: 'hidden' }}>
-            <header style={{
-                height: '10vh',
-                width: '100%'
-            }} >
+        <Box>
+            <AppBar component="header">
+                <Login open={loginDialog} setOpen={setLoginDialog} />
+                <Register open={registerDialog} setOpen={setRegisterDialog} />
                 <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} sx={{
                     width: 1,
                     height: 1,
                     bgcolor: "primary.main"
                 }}>
                     <Box>
-                        <Typography variant="h4" color="#fff" sx={{ ml: 1 }}>
-                            לוגו
-                        </Typography>
+                        <Img alt="complex" src="./logo_shugi.png" />
                     </Box>
                     <Box>
-                        <NavTabs/>
+                        <NavTabs />
                     </Box>
-                    <Box>
-                        {/* <IconButton color="secondary" sx={{ mx: 1 }}>
-                            <EmailIcon />
-                        </IconButton> */}
-                        {/* <IconButton color="secondary" sx={{ mx: 1 }}>
-                            <AccountCircleIcon />
-                        </IconButton> */}
-                        <AccountMenu />
-                    </Box>
+                    <Stack direction="row" alignItems="center" spacing={2} sx={{ height: 0.5 }}>
+                        {!user && <>
+                            <Button color="secondary" size="small" onClick={() => setLoginDialog(true)}>
+                                התחברות
+                            </Button>
+                            <Button variant="contained" color="secondary" size="small" onClick={() => setRegisterDialog(true)}>
+                                הרשמה
+                            </Button>
+                        </>}
+                        {user && <>
+                        {/* <sup>1</sup> */}
+                            <AddShoppingCartOutlinedIcon color="secondary" />
+                            
+                            <AccountMenu />
+                            
+                        </>}
+                    </Stack>
                 </Stack>
-            </header>
-            <Grid container sx={{ height: '90vh' }}>
+            </AppBar>
+            <Grid container sx={{ height: '90vh', pt: 10 }}>
                 <Grid item xs={12} lg={2} sx={{
-                    bgcolor: 'red',
+                    position: "relative",
+                    bgcolor: '#EBF2FF',
+                    zIndex: 10
                 }}>
-                    <aside>
-                        תפריט צד
-                    </aside>
+                    <Box sx={{
+                        position: "absolute",
+                        top: "0px",
+                        left:"0px"
+                    }}>
+                        <SideBarMenu />
+                    </Box>
                 </Grid>
                 <Grid item xs={12} lg={10} sx={{ overflowY: 'auto' }}>
-                    <Box component='main' sx={{ width: 1, minHeight: '75vh' }}>
-                        <Outlet />
-                    </Box>
-                    <Box component='footer' sx={{ width: 1 }}>
-                        <Typography variant="h6" align="center" sx={{ width: 1 }}>
-                            Shira Doron & Avital Goldman &copy; 2022
-                        </Typography>
-                    </Box>
+                    <Container>
+                        <Box component='main' sx={{ width: 1, minHeight: '75vh' }}>
+                            <Outlet />
+                        </Box>
+                        <AppBar position="fixed" color="inherit" sx={{ top: 'auto', bottom: 0, border: "none", boxShadow: "none", zIndex: 1 }}>
+                            <Box component='footer' sx={{ width: 1 }}>
+                                <Typography variant="subtitle1" align="center" sx={{ width: 1, color: theme.palette.fourth.main }}>
+                                    Shira Doron & Avital Goldman &copy; 2022
+                                </Typography>
+                            </Box>
+                        </AppBar>
+                    </Container>
                 </Grid>
             </Grid>
 

@@ -7,14 +7,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import http from '../api/http';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -22,19 +23,20 @@ export default function AccountMenu() {
     setAnchorEl(null);
   };
   return (
+
     <React.Fragment>
-      <Box sx={{alignItems: 'center', textAlign: 'center', mx: 1}}>
+      <Box sx={{ alignItems: 'center', textAlign: 'center', mx: 1 }}>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 , mx: 1}}
+            sx={{ ml: 2, mx: 1 }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            color = "secondary"
+            color="secondary"
           >
-            <AccountCircleIcon sx={{ fontSize: '48px'}} />
+            <AccountCircleIcon sx={{ fontSize: '48px' }} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -73,30 +75,30 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
+
         <MenuItem>
-          <Avatar /> Profile
+          <Avatar /> פרופיל
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <ListItemIcon>
+            <VpnKeyOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          אפס סיסמא
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={async () => {
+          try {
+            let res = await http.get("logout");
+            localStorage.clear();
+            window.location.reload();
+          } catch (error) {
+            console.log("55555555555555555555");
+          }
+        }}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          התנתקות
         </MenuItem>
       </Menu>
     </React.Fragment>

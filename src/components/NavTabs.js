@@ -10,7 +10,7 @@ function LinkTab(props) {
       {/* Define text decoration */}
       <Tab
         label={props.label}
-        sx={{color:"secondary.main", textDecoration: "none", mx: 2}}
+        sx={{ color: "secondary.main", textDecoration: "none", mx: 2 }}
       />
     </Link>
   );
@@ -26,9 +26,9 @@ export default function NavTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs value={value} onChange={handleChange} aria-label="nav tabs example" textColor='secondary'>
-        <LinkTab label="מורים" href="/" />
-        <LinkTab label="חוגים" href="/login" />
-        <LinkTab label="תמיכה ומידע" href="/register" />
+        <LinkTab label="תמיכה ומידע " href="/information" />
+        <LinkTab label="חוגים" href="/courses" />
+        <LinkTab label="מורים" href="/teachers" />
       </Tabs>
     </Box>
   );
