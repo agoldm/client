@@ -10,6 +10,7 @@ import Login from "./Login";
 import Register from "./Register";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import Context from "../context";
+import ChatFab from "./chat/ChatFab";
 
 function Layout() {
 
@@ -52,11 +53,11 @@ function Layout() {
                             </Button>
                         </>}
                         {user && <>
-                        {/* <sup>1</sup> */}
+                            {/* <sup>1</sup> */}
                             <AddShoppingCartOutlinedIcon color="secondary" />
-                            
+
                             <AccountMenu />
-                            
+
                         </>}
                     </Stack>
                 </Stack>
@@ -70,7 +71,7 @@ function Layout() {
                     <Box sx={{
                         position: "absolute",
                         top: "0px",
-                        left:"0px"
+                        left: "0px"
                     }}>
                         <SideBarMenu />
                     </Box>
@@ -90,7 +91,7 @@ function Layout() {
                     </Container>
                 </Grid>
             </Grid>
-
+            <ChatFab />
         </Box >
     );
 }
