@@ -62,28 +62,12 @@ function Layout() {
                     </Stack>
                 </Stack>
             </AppBar>
-<<<<<<< HEAD
            
             <Grid container sx={{ height: '90vh', pt: 15 }}>  
                 <Grid item xs={12} lg={1.5}>  
                  <Drawer open={true} hideBackdrop elevation={0} variant="permanent">
                     <SideBarMenu />
                 </Drawer>  
-=======
-            <Grid container sx={{ height: '90vh', pt: 10 }}>
-                <Grid item xs={12} lg={2} sx={{
-                    position: "relative",
-                    bgcolor: '#EBF2FF',
-                    zIndex: 10
-                }}>
-                    <Box sx={{
-                        position: "absolute",
-                        top: "0px",
-                        left: "0px"
-                    }}>
-                        <SideBarMenu />
-                    </Box>
->>>>>>> da0333455e5562328f632050205655e1a5f88df4
                 </Grid>
                 <Grid item xs={12} lg={10.5}>
                     <Container>
