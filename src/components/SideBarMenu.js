@@ -43,7 +43,7 @@ function SideBarMenu() {
     ]
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%', pt:10, pr:5,  bgcolor: '#EBF2FF',  height:1 }}>
             <MenuList sx={{ width: 1 }}>
                 {itemsList.map((item, index) => {
                     return (

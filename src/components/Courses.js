@@ -3,9 +3,17 @@ import * as React from 'react';
 import useGet from '../api/hooks/useGet';
 import { Grid, Card, Box, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { alignProperty } from '@mui/material/styles/cssUtils';
-
+import { styled } from '@mui/material/styles';
+const Img = styled('img')({
+    margin: 'auto',
+    display: 'block',
+    width: '128px',
+    height: '128px',
+    maxWidth: '100%',
+    display: "block"
+});
 function Courses() {
+
     const { data, loading, error } = useGet("courses");
 
     if (loading) {
@@ -48,12 +56,10 @@ function Courses() {
                                     </Box>
                                 </CardActions>
 
-                                {/* </ImageListItem> */}
                             </Card>
                         </Grid>
                     ))
                 }
-                {/* // </ImageList> */}
             </Grid>
         </Box>
     );

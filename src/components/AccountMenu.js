@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -13,6 +14,9 @@ import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import http from '../api/http';
 
 export default function AccountMenu() {
+
+  let navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -76,7 +80,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
 
-        <MenuItem>
+        <MenuItem onClick={() => navigate("/profile")}>
           <Avatar /> פרופיל
         </MenuItem>
         <MenuItem>

@@ -3,8 +3,17 @@ import React from "react";
 import { useNavigate } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Typography, Grid, Stack, Button } from "@mui/material";
-let loadingGif = require("../study.gif");
 
+import { styled } from '@mui/material/styles';
+let loadingGif = require("../study.gif");
+const Img = styled('img')({
+    margin: 'auto',
+    display: 'block',
+    width: '128px',
+    height: '128px',
+    maxWidth: '100%',
+    display: "block"
+});
 function Home() {
     let navigate = useNavigate();
     return (
@@ -25,7 +34,7 @@ function Home() {
                 </Stack>
             </Grid>
             <Grid item xs={7}>
-                <img style={{ alignSelf: 'center' }} src={loadingGif} alt="wait until the page loads" />
+                <img style={{ alignSelf: 'center' }} block src={loadingGif} alt="wait until the page loads" />
             </Grid>
         </Grid>
     );

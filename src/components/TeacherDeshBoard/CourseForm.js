@@ -20,17 +20,13 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
     React.useEffect(() => {
         init();
         if (isNew) {
-            setInputs({
-                start_date: formatDateJS(),
-                end_date: formatDateJS(),
-                time: 1
-            })
+            setInputs({})
             setMethod("POST")
         } else {
             setInputs(initInputs)
             setMethod("PUT")
         }
-    }, [isNew]);
+    }, [isNew, initInputs]);
 
     React.useEffect(() => {
         setTimeout(() => {
@@ -128,7 +124,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                     label="תאריך התחלה"
                                     InputLabelProps={{ shrink: true, required: true }}
                                     type="date"
-                                    value={inputs['start_date'] || ""}
+                                    value={formatDateJS(inputs['start_date'])}
                                     onChange={onChange}
                                 />
                                 <TextField
@@ -138,7 +134,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                     label="תאריך סיום"
                                     InputLabelProps={{ shrink: true, required: true }}
                                     type="date"
-                                    value={inputs['end_date'] || ""}
+                                    value={formatDateJS(inputs['end_date'])}
                                     onChange={onChange}
                                 //defaultValue={values.someDate.format("YYYY-MM-DD")}
                                 />
