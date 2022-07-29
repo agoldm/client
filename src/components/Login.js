@@ -21,11 +21,13 @@ function Login({ open, setOpen }) {
     }
     //לעדכן בקונטקסט אישור יוזר
     useEffect(() => {
+        setUser(null)
         if (data && data.login) {
             setUser(data)
             setOpen(false)
         }
     }, [data]);
+    
     return (
         <Dialog open={open}>
             <DialogTitle>התחברות</DialogTitle>

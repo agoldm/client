@@ -10,6 +10,8 @@ const Img = styled('img')({
     display: 'block',
     width: '128px',
     height: '128px',
+    maxWidth: '100%',
+    display: "block"
 });
 function Teachers() {
 
@@ -36,7 +38,7 @@ function Teachers() {
                         <Grid item xs={2}>
                             <Paper elevation={4}>
                                 <ButtonBase sx={{ width: 1, height: 1 }}>
-                                    <Img alt="complex" src={`http://localhost:8080/${i.image}`}/>
+                                    <Img alt="complex" src={`http://localhost:8080/${i.image}`} />
                                 </ButtonBase>
                             </Paper>
                         </Grid>

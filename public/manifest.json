@@ -1,22 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Sugi App",
+  "name": "Sugi React App PWA",
   "icons": [
     {
-      "src": "logoShugi.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/png"
+      "src": "logo2.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "logoShugi.png",
+      "src": "logo2.png",
+      "sizes": "360x360",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logoShugi.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any maskable"
     }
+    
   ],
   "start_url": ".",
   "display": "standalone",

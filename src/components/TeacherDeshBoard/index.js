@@ -3,10 +3,9 @@ import * as React from 'react';
 import { Box, IconButton, Grid, Typography, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
-import { formatCurrency } from '../../utils/helper';
+import { formatCurrency, formatDateIL } from '../../utils/helper';
 import CourseForm from './CourseForm';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteForm from '../DeleteForm';
@@ -14,8 +13,6 @@ import DeleteForm from '../DeleteForm';
 function TeacherDeshBoard() {
 
     const { getData, data, loading, error } = useGet("courses/my-courses");
-
-    const [addBtnLable, setBtnLable] = React.useState("");
 
     const [currentID, setCurrentID] = React.useState(null);
 
@@ -26,8 +23,8 @@ function TeacherDeshBoard() {
     const [deleteFormOpen, setDeleteOpen] = React.useState(false);
 
     React.useEffect(() => {
-        if(!courseFormOpen) getData();
-    },[courseFormOpen])
+        if (!courseFormOpen) getData();
+    }, [courseFormOpen])
 
     if (loading) {
         return (<p>loading..</p>)
@@ -41,23 +38,23 @@ function TeacherDeshBoard() {
         { key: "description", title: "תיאור" },
         { key: "long", title: "משך זמן" },
         { title: "מחיר", cb: (row) => formatCurrency(row.price_per_time) },
-        { key: "start_date", title: "התחלה" },
-        { key: "end_date", title: "סיום" },
+        { title: "התחלה", cb: (row) => formatDateIL(row.start_date) },
+        { title: "סיום", cb: (row) => formatDateIL(row.end_date) },
         {
             title: "", cb: (row) => {
                 return (
                     <div>
                         <IconButton onClick={() => {
-                                setCourseFormIsNew(false)
-                                setCourseFormObject(row)
-                                setCourseOpen(true)
-                            }} >
+                            setCourseFormIsNew(false)
+                            setCourseFormObject(row)
+                            setCourseOpen(true)
+                        }} >
                             <ModeEditOutlinedIcon />
                         </IconButton>
                         <IconButton onClick={() => {
-                                setCurrentID(row._id)
-                                setDeleteOpen(true);
-                            }}>
+                            setCurrentID(row._id)
+                            setDeleteOpen(true);
+                        }}>
                             <DeleteIcon />
                         </IconButton>
                     </div>
@@ -77,15 +74,14 @@ function TeacherDeshBoard() {
                 <Grid item xs={2}>
                     <Button
                         variant='contained'
+                        size='large'
                         startIcon={<AddBoxIcon />}
-                        onMouseEnter={() => setBtnLable("הוספת קורס")}
-                        onMouseLeave={() => setBtnLable("")}
                         onClick={() => {
                             setCourseFormIsNew(true)
                             setCourseOpen(true)
                         }}
                     >
-                        {addBtnLable}
+                        הוספת קורס
                     </Button>
                 </Grid>
             </Grid>
