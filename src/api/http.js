@@ -18,8 +18,8 @@ export default {
 async function ajax(endPoint, method = "GET", data = {}) {
     try {
         const response = await fetch(`${BASE_URL}${endPoint}`, {
+            credentials: 'include',
             headers: {
-                "Accept": "application/json",
                 "Content-Type": "application/json"
             },
             method: method,
