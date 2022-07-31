@@ -18,8 +18,9 @@ export default {
 async function ajax(endPoint, method = "GET", data = {}) {
     try {
         const response = await fetch(`${BASE_URL}${endPoint}`, {
-            credentials: 'include',
+            // credentials: 'include',
             headers: {
+                "x-api-key": localStorage.getItem("token") || "",
                 "Content-Type": "application/json"
             },
             method: method,

@@ -90,14 +90,9 @@ export default function AccountMenu() {
           אפס סיסמא
         </MenuItem>
         <Divider />
-        <MenuItem onClick={async () => {
-          try {
-            let res = await http.get("logout");
-            localStorage.clear();
-            window.location.reload();
-          } catch (error) {
-            console.log("55555555555555555555");
-          }
+        <MenuItem onClick={() => {
+          localStorage.clear();
+          window.location.replace("/");
         }}>
           <ListItemIcon>
             <Logout fontSize="small" />

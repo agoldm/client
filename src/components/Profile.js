@@ -6,39 +6,39 @@ import terms from "../constants/terms"
 import usePost from '../api/hooks/usePost';
 import { crypt } from "../utils/helper"
 import useGet from "../api/hooks/useGet";
+import useHttp from "../api/hooks/useHttp";
 
 function Profile({ open, setOpen }) {
 
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [confirmPassword, setConfirmPassword] = React.useState("");
 
-    const { getData, data, loading, error, setError } = useGet("users/profile");
-    console.log(data);
+    const getProfile = useGet("users/profile");
+    const updateProfile = useHttp('users/','PUT')
 
-    const registerSubmit = (e) => {
+
+    const updateSubmit = (e) => {
 
         e.preventDefault();
 
-        if (password !== confirmPassword) return setError(true);
-
-        getData({ name, email, username, password: crypt.encrypt(password) });
+        updateProfile.getData({ name, email, username});
 
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            if (data && data.success) setOpen(false)
-        }, 3000);
 
-    }, [data]);
+        if (getProfile.data && !getProfile.error) {
+            setName(getProfile.data.name)
+            setEmail(getProfile.data.email)
+            setUsername(getProfile.data.username)
+        }
+    }, [getProfile.data]);
 
     return (
 
         <Box sx={{ width: 1 }}>
-            <form onSubmit={registerSubmit}>
+            <form onSubmit={updateSubmit}>
                 <Stack
 
                     direction="column"
@@ -47,16 +47,16 @@ function Profile({ open, setOpen }) {
                     spacing={2}
                     sx={{ width: 1, height: 1 }}
                 >
-                    {error && <Alert variant="filled" severity="error">
-                        שם משתמש או סיסמא לא נכונים
+                    {updateProfile.error && <Alert variant="filled" severity="error">
+                        פרטים לא נכונים
                     </Alert>}
-                    {(data && data.success) && <Alert variant="filled" severity="success">
+                    {(updateProfile.data && updateProfile.data.success) && <Alert variant="filled" severity="success">
                         נרשמת בהצלחה
                     </Alert>}
-                    <TextField onChange={(e) => setName(e.target.value)} required label="שם מלא" variant="outlined" />
-                    <TextField onChange={(e) => setEmail(e.target.value)} required label="אימייל" type='email' variant="outlined" />
-                    <TextField onChange={(e) => setUsername(e.target.value)} required label={terms("username")} variant="outlined" />
-                    <Button type='submit' variant="contained">כניסה</Button>
+                    <TextField value={name} focused={!getProfile.error} onChange={(e) => setName(e.target.value)} required label="שם מלא" variant="outlined" />
+                    <TextField value={email} focused={!getProfile.error} onChange={(e) => setEmail(e.target.value)} required label="אימייל" type='email' variant="outlined" />
+                    <TextField value={username} focused={!getProfile.error} onChange={(e) => setUsername(e.target.value)} required label={terms("username")} variant="outlined" />
+                    <Button type='submit' variant="contained">שמירה</Button>
                 </Stack>
             </form>
         </Box>

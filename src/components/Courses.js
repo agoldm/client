@@ -20,6 +20,7 @@ function Courses() {
         return (<p>loading..</p>)
     }
     if (error) {
+        console.log(data);
         return (<p>error..</p>)
     }
     return (

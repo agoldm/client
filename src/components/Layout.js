@@ -73,7 +73,9 @@ function Layout() {
                 <Grid item xs={12} lg={10.5}>
                     <Container>
                         <Box component='main' sx={{ width: 1, pb: 20 }}>
+                        <ChatFab />
                             <Outlet />
+                            
                         </Box>
                         <AppBar position="fixed" color="inherit" sx={{ top: 'auto', bottom: 0, border: "none", boxShadow: "none", zIndex: 1 }}>
 
@@ -81,9 +83,11 @@ function Layout() {
                                 <Typography variant="subtitle1" align="center" sx={{ width: 1, color: theme.palette.fourth.main }}>
                                     Shira Doron & Avital Goldman &copy; 2022
                                 </Typography>
+                               
                             </Box>
+
                         </AppBar>
-                        <ChatFab />
+                       
                     </Container>
                 </Grid>
             </Grid>

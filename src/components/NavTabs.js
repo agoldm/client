@@ -29,6 +29,7 @@ export default function NavTabs() {
         <LinkTab label="תמיכה ומידע " href="/information" />
         <LinkTab label="חוגים" href="/courses" />
         <LinkTab label="מורים" href="/teachers" />
+        <LinkTab label="צאט" href="/chat-web-socket" />
       </Tabs>
     </Box>
   );

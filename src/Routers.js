@@ -10,13 +10,16 @@ import Register from "./components/Register";
 import Information from "./components/Information";
 import StudentDeshBoard from "./components/StudentDeshBoard";
 import Profile from "./components/Profile";
+import ChatWebSocket from "./components/chat/index";
 
 function Routers() {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
+                <Route index element={<Home />} />
                 <Route path="/teachers" element={<Teachers />} />
+                <Route path="/chat-web-socket" element={<ChatWebSocket />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/teacher-deshboard" element={<TeacherDeshBoard />} />
                 <Route path="/student-deshboard" element={<StudentDeshBoard />} />

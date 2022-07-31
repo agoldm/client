@@ -14,7 +14,7 @@ function Login({ open, setOpen }) {
     const [password, setPassword] = React.useState("");
 
     const { getData, data, loading, error, setError } = usePost("login");
-
+    console.log(data);
     const loginSubmit = (e) => {
         e.preventDefault();
         getData({ username, password: crypt.encrypt(password) });
@@ -22,9 +22,10 @@ function Login({ open, setOpen }) {
     //לעדכן בקונטקסט אישור יוזר
     useEffect(() => {
         setUser(null)
-        if (data && data.login) {
-            setUser(data)
-            setOpen(false)
+        if (data && data.token) {
+            localStorage.setItem("token",data.token);
+            setUser(data);
+            setOpen(false);
         }
     }, [data]);
     
