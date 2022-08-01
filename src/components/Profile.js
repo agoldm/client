@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 
-import { Box, TextField, Button, Stack, Dialog, DialogTitle, DialogContent, IconButton, Alert } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, TextField, Button, Stack, Alert } from "@mui/material";
 import terms from "../constants/terms"
-import usePost from '../api/hooks/usePost';
-import { crypt } from "../utils/helper"
 import useGet from "../api/hooks/useGet";
 import useHttp from "../api/hooks/useHttp";
 
@@ -15,14 +12,14 @@ function Profile({ open, setOpen }) {
     const [username, setUsername] = React.useState("");
 
     const getProfile = useGet("users/profile");
-    const updateProfile = useHttp('users/','PUT')
+    const updateProfile = useHttp('users/', 'PUT')
 
 
     const updateSubmit = (e) => {
 
         e.preventDefault();
 
-        updateProfile.getData({ name, email, username});
+        updateProfile.getData({ name, email, username });
 
     }
 
