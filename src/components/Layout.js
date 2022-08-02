@@ -80,7 +80,6 @@ function Layout() {
                                 <ChatIcon />
                             </Fab>
                             <Outlet />
-
                         </Box>
                         <AppBar position="fixed" color="inherit" sx={{ top: 'auto', bottom: 0, border: "none", boxShadow: "none", zIndex: 1 }}>
 

@@ -69,7 +69,7 @@ function Chat({ open, setOpen }) {
                     onChange={(e) => setCurrentMessage(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                <IconButton onClick={sendMessage}>
+                <IconButton style={{transform:'rotate(180deg)'}} onClick={sendMessage}>
                     <SendIcon />
                 </IconButton>
             </DialogActions>

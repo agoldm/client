@@ -26,9 +26,9 @@ export default function NavTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs value={value} onChange={handleChange} aria-label="nav tabs example" textColor='secondary'>
-        <LinkTab label="תמיכה ומידע " href="/information" />
         <LinkTab label="חוגים" href="/courses" />
         <LinkTab label="מורים" href="/teachers" />
+        <LinkTab label="תמיכה ומידע " href="/information" />
       </Tabs>
     </Box>
   );
