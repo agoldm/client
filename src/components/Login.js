@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Box, TextField, Button, Alert, Stack, Typography, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
+import { Box, TextField, Button, Alert, Stack, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import usePost from '../api/hooks/usePost';
 import { crypt } from "../utils/helper"
@@ -8,13 +8,12 @@ import Context from "../context";
 
 function Login({ open, setOpen }) {
 
-    const { setUser } = React.useContext(Context);
+    const { setUser, setRole } = React.useContext(Context);
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
 
     const { getData, data, loading, error, setError } = usePost("login");
-    console.log(data);
     const loginSubmit = (e) => {
         e.preventDefault();
         getData({ username, password: crypt.encrypt(password) });
@@ -23,12 +22,14 @@ function Login({ open, setOpen }) {
     useEffect(() => {
         setUser(null)
         if (data && data.token) {
-            localStorage.setItem("token",data.token);
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("role", data.role);
             setUser(data);
+            setRole(data.role);
             setOpen(false);
         }
     }, [data]);
-    
+
     return (
         <Dialog open={open}>
             <DialogTitle>התחברות</DialogTitle>

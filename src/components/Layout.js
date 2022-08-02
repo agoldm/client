@@ -10,7 +10,9 @@ import Login from "./Login";
 import Register from "./Register";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import Context from "../context";
-import ChatFab from "./chat/ChatFab";
+import Chat from "./Chat";
+import Fab from '@mui/material/Fab';
+import ChatIcon from '@mui/icons-material/Chat';
 
 function Layout() {
 
@@ -26,12 +28,14 @@ function Layout() {
 
     const [loginDialog, setLoginDialog] = React.useState(false);
     const [registerDialog, setRegisterDialog] = React.useState(false);
+    const [chatDialog, setChatDialog] = React.useState(false);
 
     return (
         <Box>
-            <AppBar component="header" sx={{ zIndex: 10000 }}>
+            <AppBar component="header" sx={{ zIndex: 1250 }}>
                 <Login open={loginDialog} setOpen={setLoginDialog} />
                 <Register open={registerDialog} setOpen={setRegisterDialog} />
+                <Chat open={chatDialog} setOpen={setChatDialog} />
                 <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} sx={{
                     width: 1,
                     height: 1,
@@ -72,7 +76,9 @@ function Layout() {
                 <Grid item xs={12} lg={10.5}>
                     <Container>
                         <Box component='main' sx={{ width: 1, pb: 20 }}>
-                            <ChatFab />
+                            <Fab size="large" color="primary" aria-label="chat" onClick={() => setChatDialog(true)}>
+                                <ChatIcon />
+                            </Fab>
                             <Outlet />
 
                         </Box>

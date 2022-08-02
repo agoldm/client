@@ -16,13 +16,12 @@ const Img = styled('img')({
 function Courses() {
 
     const { data, loading, error } = useGet("courses");
-    const { updateData, dataPost, loadingPost, errorPost, setError } = usePost("users/favorite-course");
+    const addFavorite = usePost("users/favorite-course");
     const [choosenCourseId, setChoosenCourseId] = React.useState("");
 
-    const courseAdd = (e, itemId) => {
+    const courseAdd = (itemId) => {
         console.log(itemId);
-        e.preventDefault();
-        updateData({ itemId });
+        addFavorite.getData({ courseId: itemId });
     }
 
     if (loading) {
@@ -59,7 +58,7 @@ function Courses() {
                                 </CardActionArea>
                                 <CardActions>
                                     <Button size="small" color="primary" onClick={(e) => {
-                                        courseAdd(e, item._id)
+                                        courseAdd(item._id)
                                     }} >
 
                                         הירשם
