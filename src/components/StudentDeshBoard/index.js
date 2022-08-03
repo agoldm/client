@@ -8,7 +8,7 @@ import DeleteForm from '../DeleteForm';
 
 function StudentDeshBoard() {
 
-    const { getData, data, loading, error } = useGet("users/teachers");
+    const { getData, data, loading, error } = useGet("courses/getMyTeachers");
 
     const [currentID, setCurrentID] = React.useState(null);
     const [deleteFormOpen, setDeleteOpen] = React.useState(false);

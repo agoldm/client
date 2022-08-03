@@ -8,7 +8,7 @@ import DeleteForm from '../DeleteForm';
 
 function MyStudents() {
 
-    const { getData, data, loading, error } = useGet("/my-students");
+    const { getData, data, loading, error } = useGet("courses/my-students");
     const [addBtnLable, setBtnLable] = React.useState("");
 
     const [currentID, setCurrentID] = React.useState(null);
