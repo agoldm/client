@@ -26,7 +26,7 @@ function SideBarMenu() {
     {
         (role == 'student') && itemsList.push({
             lable: "השיעורים שלי",
-            to: "/teacher-deshboard",
+            to: "/student-courses",
             icon: <BackpackOutlinedIcon />,
             role: ""
         })
@@ -44,7 +44,7 @@ function SideBarMenu() {
     {
         (role == 'teacher') && itemsList.push({
             lable: "התלמידים שלי",
-            to: "/",
+            to: "/my-students",
             icon: <SchoolIcon />,
             role: ""
         })

@@ -1,22 +1,21 @@
 import * as React from 'react';
 
-import { Box, IconButton, Grid, Typography, Button, TableContainer, TableCell } from '@mui/material';
+import { Box, IconButton, Grid, Typography, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
+import { formatCurrency, formatDateIL } from '../../utils/helper';
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteForm from '../DeleteForm';
 
-function MyStudents() {
+function StudentsCourses() {
 
-    const { getData, data, loading, error } = useGet("/my-students");
-    const [addBtnLable, setBtnLable] = React.useState("");
+    const { getData, data, loading, error } = useGet("courses/student-courses");
 
     const [currentID, setCurrentID] = React.useState(null);
-    const [deleteFormOpen, setDeleteOpen] = React.useState(false);
-
     console.log(data);
     console.log(loading);
-
     if (loading) {
         return (<p>loading..</p>)
     }
@@ -24,10 +23,13 @@ function MyStudents() {
         return (<p>error..</p>)
     }
     const columns = [
-        { key: "name", title: "שם" },
-        { key: "email", title: "אימייל" },
-        { key: "phone", title: "טלפון" },
-        { key: "gender", title: "מגדר" },
+        { key: "name", title: "שם הקורס" },
+        { key: "category", title: "קטגוריה" },
+        { key: "description", title: "תיאור" },
+        { key: "long", title: "משך זמן" },
+        { title: "מחיר", cb: (row) => formatCurrency(row.price_per_time) },
+        { title: "התחלה", cb: (row) => formatDateIL(row.start_date) },
+        { title: "סיום", cb: (row) => formatDateIL(row.end_date) },
         {
             title: "", cb: (row) => {
                 return (
@@ -35,7 +37,6 @@ function MyStudents() {
                         <IconButton>
                             <DeleteIcon onClick={() => {
                                 setCurrentID(row._id)
-                                setDeleteOpen(true);
 
                             }} />
                         </IconButton>
@@ -47,15 +48,13 @@ function MyStudents() {
 
     return (
         <Box>
-            <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
-                    <Typography variant='h3'>התלמידים שלי</Typography>
-
+                    <Typography variant='h3'>הקורסים שלי</Typography>
                 </Grid>
             </Grid>
             <MuiTable pColumns={columns} pRows={data} />
         </Box>
     )
 }
-export default MyStudents;
+export default StudentsCourses;
