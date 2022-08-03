@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
 import { formatCurrency, formatDateIL } from '../../utils/helper';
-import DeleteForm from '../DeleteForm';
+import DeleteStudentForm from './DeleteStudentCourse';
 let loadingGif = require("../../loading.gif");
 let errorgGif = require("../../error.gif");
 function StudentsCourses() {
@@ -54,7 +54,7 @@ function StudentsCourses() {
 
     return (
         <Box>
-            <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
+            <DeleteStudentForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteStudentForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
                     <Typography variant='h3'>השיעורים שלי</Typography>
