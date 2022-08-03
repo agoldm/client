@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { Box, IconButton, Grid, Typography } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
 import DeleteForm from '../DeleteForm';
@@ -29,11 +28,6 @@ function StudentDeshBoard() {
                 return (
                     <div>
                         <IconButton>
-                            <DeleteIcon onClick={() => {
-                                setCurrentID(row._id)
-                                setDeleteOpen(true);
-
-                            }} />
                         </IconButton>
                     </div>
                 )
@@ -49,15 +43,6 @@ function StudentDeshBoard() {
                     <Typography variant='h3'>המורים שלי</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                    {/* <Button
-                        variant='contained'
-                        startIcon={<AddBoxIcon />}
-                        onMouseEnter={() => setBtnLable("הוספת קורס")}
-                        onMouseLeave={() => setBtnLable("")}
-                        onClick={() => { setCourseOpen(true) }}
-                    >
-                        {addBtnLable}
-                    </Button> */}
                 </Grid>
             </Grid>
             <MuiTable pColumns={columns} pRows={data} />

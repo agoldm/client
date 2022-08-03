@@ -1,29 +1,28 @@
 import * as React from 'react';
 import useGet from '../api/hooks/useGet';
 
-import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import { Box, ButtonBase, Typography, Paper, Card, CardMedia, CardContent } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton'
-const Img = styled('img')({
-    margin: 'auto',
-    display: 'block',
-    width: '128px',
-    height: '128px',
-    maxWidth: '100%'
-});
+import { Typography, Card, CardMedia, CardContent, Grid } from '@mui/material';
+let loadingGif = require("../loading.gif");
+let errorgGif = require("../error.gif");
+
 function Teachers() {
 
     const { data, loading, error } = useGet("users/teachers");
 
     if (loading) {
-        return (<p><Skeleton
-            shape="rectangle"
-            sx={{ width: 1, height: 1, m: 5 }}
-        /></p>)
+        return (
+            <Grid item xs={7}>
+                <img style={{ alignSelf: 'center' }} src={loadingGif} alt="wait until the page loads" />
+            </Grid>
+        );
     }
     if (error) {
-        return (<p>error..</p>)
+        console.log(data);
+        return (
+            <Grid item xs={7}>
+                <img style={{ alignSelf: 'center' }} src={errorgGif} alt="wait until the page loads" />
+            </Grid>
+        )
     }
     return (
         <div>

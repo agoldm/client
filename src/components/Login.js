@@ -15,7 +15,7 @@ function Login({ open, setOpen }) {
 
     const { getData, data, loading, error, setError } = usePost("login");
     const resetPassword = usePost("reset-password");
-    
+
     const loginSubmit = (e) => {
         e.preventDefault();
         getData({ username, password: crypt.encrypt(password) });
@@ -61,7 +61,6 @@ function Login({ open, setOpen }) {
                             </Alert>}
                             {(resetPassword.data) && <Alert variant="filled" severity="success">
                                 סיסמתך אופסה בהצלחה!
-                                {resetPassword.data.newPassword}
                             </Alert>}
                             {(resetPassword.error) && <Alert variant="filled" severity="error">
                                 סיסמתך אופסה בהצלחה!

@@ -5,21 +5,31 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
 import { formatCurrency, formatDateIL } from '../../utils/helper';
+import DeleteForm from '../DeleteForm';
+let loadingGif = require("../../loading.gif");
+let errorgGif = require("../../error.gif");
 function StudentsCourses() {
 
     const { getData, data, loading, error } = useGet("courses/student-courses");
 
     const [currentID, setCurrentID] = React.useState(null);
-    console.log(data);
-    console.log(loading);
+    const [deleteFormOpen, setDeleteOpen] = React.useState(false);
     if (loading) {
-        return (<p>loading..</p>)
+        return (
+            <Grid item xs={7}>
+                <img style={{ alignSelf: 'center' }} src={loadingGif} alt="wait until the page loads" />
+            </Grid>
+        );
     }
     if (error) {
-        return (<p>error..</p>)
+        return (
+            <Grid item xs={7}>
+                <img style={{ alignSelf: 'center' }} src={errorgGif} alt="wait until the page loads" />
+            </Grid>
+        )
     }
     const columns = [
-        { key: "name", title: "שם הקורס" },
+        { key: "name", title: "שם שיעור" },
         { key: "category", title: "קטגוריה" },
         { key: "description", title: "תיאור" },
         { key: "long", title: "משך זמן" },
@@ -33,7 +43,7 @@ function StudentsCourses() {
                         <IconButton>
                             <DeleteIcon onClick={() => {
                                 setCurrentID(row._id)
-
+                                setDeleteOpen(true);
                             }} />
                         </IconButton>
                     </div>
@@ -44,9 +54,10 @@ function StudentsCourses() {
 
     return (
         <Box>
+            <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
-                    <Typography variant='h3'>הקורסים שלי</Typography>
+                    <Typography variant='h3'>השיעורים שלי</Typography>
                 </Grid>
             </Grid>
             <MuiTable pColumns={columns} pRows={data} />

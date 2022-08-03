@@ -4,6 +4,8 @@ import useGet from '../api/hooks/useGet';
 import { Grid, Card, Box, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 import usePost from '../api/hooks/usePost';
 import Context from '../context';
+let loadingGif = require("../loading.gif");
+let errorgGif = require("../error.gif");
 function Courses() {
 
     const { data, loading, error } = useGet("courses");
@@ -11,16 +13,22 @@ function Courses() {
     const { role } = React.useContext(Context);
 
     const courseAdd = (itemId) => {
-        console.log(itemId);
         addFavorite.getData({ courseId: itemId });
     }
 
     if (loading) {
-        return (<p>loading..</p>)
+        return (
+            <Grid item xs={7}>
+                <img style={{ alignSelf: 'center' }} src={loadingGif} alt="wait until the page loads" />
+            </Grid>
+        );
     }
     if (error) {
-        console.log(data);
-        return (<p>error..</p>)
+        return (
+            <Grid item xs={7}>
+                <img style={{ alignSelf: 'center' }} src={errorgGif} alt="wait until the page loads" />
+            </Grid>
+        )
     }
     return (
         <Box sx={{ width: 0.9, m: 'auto' }}>
