@@ -7,15 +7,6 @@ import { Box, Typography, Paper, Button, IconButton, Drawer, Alert, Stack, Circu
 import CloseIcon from '@mui/icons-material/Close';
 import useDelete from '../api/hooks/useDelete';
 
-const Img = styled('img')({
-    margin: 'auto',
-    display: 'block',
-    width: '128px',
-    height: '128px',
-    maxWidth: '100%',
-    display: "block"
-});
-
 function FavoriteCourses({ open, setOpen }) {
 
     const { getData, data, loading, error } = useGet("users/favorite-course");

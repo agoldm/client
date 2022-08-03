@@ -14,6 +14,7 @@ import Chat from "./Chat";
 import Fab from '@mui/material/Fab';
 import ChatIcon from '@mui/icons-material/Chat';
 import FavoriteCourses from "./FavoriteCourses";
+import FavoriteNumber from "./FavoriteNumber";
 
 function Layout() {
 
@@ -63,9 +64,13 @@ function Layout() {
                         </>}
                         {user && <>
                             {/* <sup>1</sup> */}
-                            {(role == 'student') && <IconButton onClick={() => setFavoriteOpen(true)}>
-                                <AddShoppingCartOutlinedIcon color="secondary" />
-                            </IconButton>
+                            {(role == 'student') &&
+                                <IconButton onClick={() => setFavoriteOpen(true)}>
+                                    <AddShoppingCartOutlinedIcon color="secondary" />
+                                </IconButton>
+                            }
+                            {(role == 'student') &&
+                                <FavoriteNumber />
                             }
                             <AccountMenu />
 
