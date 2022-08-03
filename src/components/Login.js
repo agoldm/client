@@ -14,10 +14,13 @@ function Login({ open, setOpen }) {
     const [password, setPassword] = React.useState("");
 
     const { getData, data, loading, error, setError } = usePost("login");
+    const resetPassword = usePost("reset-password");
+    
     const loginSubmit = (e) => {
         e.preventDefault();
         getData({ username, password: crypt.encrypt(password) });
     }
+
     //לעדכן בקונטקסט אישור יוזר
     useEffect(() => {
         setUser(null)
@@ -29,6 +32,14 @@ function Login({ open, setOpen }) {
             setOpen(false);
         }
     }, [data]);
+
+    useEffect(() => {
+
+    }, [resetPassword.data])
+
+    const sendMail = async (user) => {
+        await resetPassword.getData({ user });
+    }
 
     return (
         <Dialog open={open}>
@@ -48,8 +59,16 @@ function Login({ open, setOpen }) {
                             {error && <Alert variant="filled" severity="error">
                                 שם משתמש או סיסמא לא נכונים
                             </Alert>}
+                            {(resetPassword.data) && <Alert variant="filled" severity="success">
+                                סיסמתך אופסה בהצלחה!
+                                {resetPassword.data.newPassword}
+                            </Alert>}
+                            {(resetPassword.error) && <Alert variant="filled" severity="error">
+                                סיסמתך אופסה בהצלחה!
+                            </Alert>}
                             <TextField onChange={(e) => setUsername(e.target.value)} label="שם משתמש" variant="outlined" />
                             <TextField onChange={(e) => setPassword(e.target.value)} label="סיסמה" type='password' variant="outlined" />
+                            <Button variant="text" onClick={() => sendMail(username)}>שכחת סיסמא? לחץ לאיפוס</Button>
                             <Button type="submit" variant="contained">כניסה</Button>
                         </Stack>
                     </form>

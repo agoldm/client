@@ -19,7 +19,8 @@ function ContextProvider({ children }) {
         <Context.Provider value={{
             user,
             setUser,
-            role, setRole
+            role,
+            setRole
         }}>
             {children}
         </Context.Provider>

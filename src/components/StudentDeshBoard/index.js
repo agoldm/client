@@ -13,9 +13,6 @@ function StudentDeshBoard() {
     const [currentID, setCurrentID] = React.useState(null);
     const [deleteFormOpen, setDeleteOpen] = React.useState(false);
 
-    console.log(data);
-    console.log(loading);
-
     if (loading) {
         return (<p>loading..</p>)
     }

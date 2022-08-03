@@ -31,17 +31,16 @@ function Layout() {
     const [chatDialog, setChatDialog] = React.useState(false);
     const [favoriteOpen, setFavoriteOpen] = React.useState(false);
 
-
     return (
         <Box>
-            <Fab size="large" color="primary" aria-label="chat" onClick={() => setChatDialog(true)} sx={{ position: 'fixed', right: 25, bottom: 25 }}>
+            {user && <Fab size="large" color="primary" aria-label="chat" onClick={() => setChatDialog(true)} sx={{ position: 'fixed', right: 25, bottom: 25 }}>
                 <ChatIcon />
-            </Fab>
-            <FavoriteCourses open={favoriteOpen} setOpen={setFavoriteOpen} />
+            </Fab>}
+            {user && <FavoriteCourses open={favoriteOpen} setOpen={setFavoriteOpen} />}
             <AppBar component="header" sx={{ zIndex: 1250 }}>
                 <Login open={loginDialog} setOpen={setLoginDialog} />
                 <Register open={registerDialog} setOpen={setRegisterDialog} />
-                <Chat open={chatDialog} setOpen={setChatDialog} />
+                {user && <Chat open={chatDialog} setOpen={setChatDialog} />}
                 <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} sx={{
                     width: 1,
                     height: 1,

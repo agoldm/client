@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Box, IconButton, Grid, Typography, Button, TableContainer, TableCell } from '@mui/material';
+import { Box, IconButton, Grid, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
@@ -9,7 +9,6 @@ import DeleteForm from '../DeleteForm';
 function MyStudents() {
 
     const { getData, data, loading, error } = useGet("courses/my-students");
-    const [addBtnLable, setBtnLable] = React.useState("");
 
     const [currentID, setCurrentID] = React.useState(null);
     const [deleteFormOpen, setDeleteOpen] = React.useState(false);

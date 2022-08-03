@@ -2,18 +2,8 @@ import * as React from 'react';
 
 import useGet from '../api/hooks/useGet';
 import { Grid, Card, Box, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { styled } from '@mui/material/styles';
 import usePost from '../api/hooks/usePost';
 import Context from '../context';
-const Img = styled('img')({
-    margin: 'auto',
-    display: 'block',
-    width: '128px',
-    height: '128px',
-    maxWidth: '100%',
-    display: "block"
-});
 function Courses() {
 
     const { data, loading, error } = useGet("courses");
@@ -38,7 +28,7 @@ function Courses() {
                 {/* // <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}> */}
                 {
                     data.map((item) => (
-                        <Grid item xs={16} sm={6} md={4} lg={3}>
+                        <Grid key={item._id} item xs={16} sm={6} md={4} lg={3}>
                             <Card>
                                 <CardActionArea>
                                     <CardMedia
@@ -48,7 +38,7 @@ function Courses() {
                                         image={`http://localhost:8080//${item.image}`}
                                         alt="green iguana"
                                     />
-                                    <CardContent>
+                                    <CardContent sx={{ minHeight: 220 }}>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {item.name}
                                         </Typography>
@@ -61,15 +51,13 @@ function Courses() {
                                     {(role == 'student') && <Button size="small" color="primary" onClick={(e) => {
                                         courseAdd(item._id)
                                     }} >
-
-
                                         הירשם
                                     </Button>
                                     }
-                                    {(role == 'student') && <Box sx={{ alignItems: 'left', mx: 15 }}>
+                                    {/* {(role == 'student') && <Box sx={{ alignItems: 'left', mx: 15 }}>
                                         <FavoriteBorderOutlinedIcon />
                                     </Box>
-                                    }
+                                    } */}
                                 </CardActions>
 
                             </Card>

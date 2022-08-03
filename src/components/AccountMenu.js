@@ -10,8 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
-import http from '../api/http';
 
 export default function AccountMenu() {
 
@@ -82,12 +80,6 @@ export default function AccountMenu() {
 
         <MenuItem onClick={() => navigate("/profile")}>
           <Avatar /> פרופיל
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <VpnKeyOutlinedIcon fontSize="small" />
-          </ListItemIcon>
-          אפס סיסמא
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => {
