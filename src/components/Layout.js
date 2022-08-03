@@ -17,8 +17,7 @@ import FavoriteCourses from "./FavoriteCourses";
 
 function Layout() {
 
-    const { user } = React.useContext(Context);
-
+    const { user, role } = React.useContext(Context);
     const Img = styled('img')({
         margin: 'auto',
         display: 'block',
@@ -65,9 +64,10 @@ function Layout() {
                         </>}
                         {user && <>
                             {/* <sup>1</sup> */}
-                            <IconButton onClick={() => setFavoriteOpen(true)}>
+                            {(role == 'student') && <IconButton onClick={() => setFavoriteOpen(true)}>
                                 <AddShoppingCartOutlinedIcon color="secondary" />
                             </IconButton>
+                            }
                             <AccountMenu />
 
                         </>}

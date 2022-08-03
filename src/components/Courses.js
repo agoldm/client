@@ -5,6 +5,7 @@ import { Grid, Card, Box, CardActionArea, CardMedia, CardContent, Typography, Ca
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { styled } from '@mui/material/styles';
 import usePost from '../api/hooks/usePost';
+import Context from '../context';
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
@@ -17,7 +18,7 @@ function Courses() {
 
     const { data, loading, error } = useGet("courses");
     const addFavorite = usePost("users/favorite-course");
-    const [choosenCourseId, setChoosenCourseId] = React.useState("");
+    const { role } = React.useContext(Context);
 
     const courseAdd = (itemId) => {
         console.log(itemId);
@@ -57,15 +58,18 @@ function Courses() {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="small" color="primary" onClick={(e) => {
+                                    {(role == 'student') && <Button size="small" color="primary" onClick={(e) => {
                                         courseAdd(item._id)
                                     }} >
 
+
                                         הירשם
                                     </Button>
-                                    <Box sx={{ alignItems: 'left', mx: 15 }}>
+                                    }
+                                    {(role == 'student') && <Box sx={{ alignItems: 'left', mx: 15 }}>
                                         <FavoriteBorderOutlinedIcon />
                                     </Box>
+                                    }
                                 </CardActions>
 
                             </Card>
