@@ -6,6 +6,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SchoolIcon from '@mui/icons-material/School';
 import BackpackOutlinedIcon from '@mui/icons-material/BackpackOutlined';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
+import Context from '../context';
 function SideBarMenu() {
 
     let navigate = useNavigate();
@@ -14,36 +15,52 @@ function SideBarMenu() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
+    const { role } = React.useContext(Context);
     const itemsList = [
         {
             lable: "דף הבית",
             to: "/",
             icon: <HomeOutlinedIcon />,
             role: ""
-        },
-        {
+        }];
+    {
+        (role == 'student') && itemsList.push({
             lable: "השיעורים שלי",
-            to: "/",
+            to: "/teacher-deshboard",
             icon: <BackpackOutlinedIcon />,
             role: ""
-        },
-        {
+        })
+    };
+
+    {
+        (role == 'student') && itemsList.push({
             lable: "המורים שלי",
             to: "/student-deshboard",
             icon: <SchoolIcon />,
             role: ""
-        },
-        {
+        })
+    };
+
+    {
+        (role == 'teacher') && itemsList.push({
+            lable: "התלמידים שלי",
+            to: "/",
+            icon: <SchoolIcon />,
+            role: ""
+        })
+    };
+
+    {
+        (role == 'teacher') && itemsList.push({
             lable: "ניהול קורסיםּ",
             to: "/teacher-deshboard",
             icon: <AssignmentTurnedInOutlinedIcon />,
             role: ""
-        },
-    ]
+        })
+    };
 
     return (
-        <Box sx={{ width: '100%', pt:10, pr:5,  bgcolor: '#EBF2FF',  height:1 }}>
+        <Box sx={{ width: '100%', pt: 10, pr: 5, bgcolor: '#EBF2FF', height: 1 }}>
             <MenuList sx={{ width: 1 }}>
                 {itemsList.map((item, index) => {
                     return (

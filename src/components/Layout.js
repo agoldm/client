@@ -76,10 +76,12 @@ function Layout() {
                 <Grid item xs={12} lg={10.5}>
                     <Container>
                         <Box component='main' sx={{ width: 1, pb: 20 }}>
+                            {/* <ChatFab onClick={()}/> */}
                             <Fab size="large" color="primary" aria-label="chat" onClick={() => setChatDialog(true)}>
                                 <ChatIcon />
                             </Fab>
                             <Outlet />
+
                         </Box>
                         <AppBar position="fixed" color="inherit" sx={{ top: 'auto', bottom: 0, border: "none", boxShadow: "none", zIndex: 1 }}>
 

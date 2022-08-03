@@ -1,14 +1,15 @@
 import * as React from 'react';
 
-import { Box, IconButton, Grid, Typography } from '@mui/material';
+import { Box, IconButton, Grid, Typography, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
 import DeleteForm from '../DeleteForm';
 
-function StudentDeshBoard() {
+function MyStudents() {
 
-    const { getData, data, loading, error } = useGet("users/teachers");
+    const { getData, data, loading, error } = useGet("courses/my-students");
+    const [addBtnLable, setBtnLable] = React.useState("");
 
     const [currentID, setCurrentID] = React.useState(null);
     const [deleteFormOpen, setDeleteOpen] = React.useState(false);
@@ -49,22 +50,24 @@ function StudentDeshBoard() {
             <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
-                    <Typography variant='h3'>המורים שלי</Typography>
+                    <Typography variant='h3'>התלמידים שלי</Typography>
                 </Grid>
-                <Grid item xs={2}>
-                    {/* <Button
-                        variant='contained'
-                        startIcon={<AddBoxIcon />}
-                        onMouseEnter={() => setBtnLable("הוספת קורס")}
-                        onMouseLeave={() => setBtnLable("")}
-                        onClick={() => { setCourseOpen(true) }}
-                    >
-                        {addBtnLable}
-                    </Button> */}
-                </Grid>
+                <TableContainer>
+                    {rows.map((row) => (
+                        <TableRow key={row.name}>
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.name}</TableCell>
+                            <TableCell align="right">{row.email}</TableCell>
+                            <TableCell align="right">{row.phone}</TableCell>
+                            <TableCell align="right">{row.number}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableContainer>
             </Grid>
             <MuiTable pColumns={columns} pRows={data} />
         </Box>
     )
 }
-export default StudentDeshBoard;
+export default MyStudents;

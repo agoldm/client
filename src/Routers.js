@@ -9,14 +9,10 @@ import Register from "./components/Register";
 import Information from "./components/Information";
 import StudentDeshBoard from "./components/StudentDeshBoard";
 import Profile from "./components/Profile";
-import Context from "./context";
+import FavoriteCourses from "./components/FavoriteCourses";
 
 function Routers() {
-
-    const { role } = React.useContext(Context)
     return (
-
-
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
@@ -28,8 +24,8 @@ function Routers() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/information" element={<Information />} />
                 <Route path="/information" element={<Information />} />
+                <Route path="/favorite" element={<FavoriteCourses />} />
                 <Route path="/profile" element={<Profile />} />
-                {/* {(role=='admin') && <Route path="/profile" element={<Profile />} />} */}
                 <Route path="*" element={<div>Not Found</div>} />
             </Route>
         </Routes>

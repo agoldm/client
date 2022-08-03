@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Box, TextField, Button, Stack, Dialog, DialogTitle, DialogContent, IconButton, Alert } from "@mui/material";
+import { Box, TextField, Button, Stack, Dialog, DialogTitle, DialogContent, IconButton, Alert, Autocomplete } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import terms from "../constants/terms"
 import usePost from '../api/hooks/usePost';
@@ -11,6 +11,7 @@ function Register({ open, setOpen }) {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [username, setUsername] = React.useState("");
+    const [role, setRole] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
 
@@ -22,7 +23,7 @@ function Register({ open, setOpen }) {
 
         if (password !== confirmPassword) return setError(true);
 
-        getData({ name, email, username, password: crypt.encrypt(password) });
+        getData({ name, email, username, role, password: crypt.encrypt(password) });
 
     }
     useEffect(() => {
@@ -59,6 +60,16 @@ function Register({ open, setOpen }) {
                             <TextField onChange={(e) => setUsername(e.target.value)} required label={terms("username")} variant="outlined" />
                             <TextField error={error} onChange={(e) => setPassword(e.target.value)} required label="סיסמה" type='password' variant="outlined" />
                             <TextField error={error} onChange={(e) => setConfirmPassword(e.target.value)} required label="אימות סיסמה" type='password' variant="outlined" />
+                            <Autocomplete
+                                onInputChange={(event, newInputValue) => {
+                                    setRole(newInputValue);
+                                }}
+                                disablePortal
+                                options={["student", "teacher"]}
+                                sx={{ width: 275 }}
+                                renderInput={(params) => <TextField {...params} label="סוג משתמש" />}
+                            />
+
                             <Button type='submit' variant="contained">כניסה</Button>
                         </Stack>
                     </form>
