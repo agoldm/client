@@ -29,7 +29,6 @@ export default function NavTabs() {
         <LinkTab label="חוגים" href="/courses" />
         <LinkTab label="מורים" href="/teachers" />
         <LinkTab label="תמיכה ומידע " href="/information" />
-        <LinkTab label="ת" href="/favorite" />
       </Tabs>
     </Box>
   );

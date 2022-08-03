@@ -11,7 +11,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
 
     const [method, setMethod] = React.useState("POST");
     const [inputs, setInputs] = React.useState({});
-    const [image, setImage] = React.useState(null)
+    const [image, setImage] = React.useState(null);
 
     const { getData, data, loading, error, setError, init } = useHttp("courses/", method);
 
@@ -168,6 +168,8 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                         type="file"
                                         hidden
                                     /></Button>
+
+
                             </Stack>
                         </Grid>
                     </Grid>

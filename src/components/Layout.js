@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Stack, Grid, Container, AppBar, Button, Drawer } from '@mui/material';
+import { Box, Typography, Stack, Grid, Container, AppBar, Button, Drawer, IconButton } from '@mui/material';
 import AccountMenu from "./AccountMenu";
 import NavTabs from "./NavTabs";
 import SideBarMenu from "./SideBarMenu";
@@ -13,6 +13,7 @@ import Context from "../context";
 import Chat from "./Chat";
 import Fab from '@mui/material/Fab';
 import ChatIcon from '@mui/icons-material/Chat';
+import FavoriteCourses from "./FavoriteCourses";
 
 function Layout() {
 
@@ -29,9 +30,15 @@ function Layout() {
     const [loginDialog, setLoginDialog] = React.useState(false);
     const [registerDialog, setRegisterDialog] = React.useState(false);
     const [chatDialog, setChatDialog] = React.useState(false);
+    const [favoriteOpen, setFavoriteOpen] = React.useState(false);
+
 
     return (
         <Box>
+            <Fab size="large" color="primary" aria-label="chat" onClick={() => setChatDialog(true)} sx={{ position: 'fixed', right: 25, bottom: 25 }}>
+                <ChatIcon />
+            </Fab>
+            <FavoriteCourses open={favoriteOpen} setOpen={setFavoriteOpen} />
             <AppBar component="header" sx={{ zIndex: 1250 }}>
                 <Login open={loginDialog} setOpen={setLoginDialog} />
                 <Register open={registerDialog} setOpen={setRegisterDialog} />
@@ -58,7 +65,9 @@ function Layout() {
                         </>}
                         {user && <>
                             {/* <sup>1</sup> */}
-                            <AddShoppingCartOutlinedIcon color="secondary" />
+                            <IconButton onClick={() => setFavoriteOpen(true)}>
+                                <AddShoppingCartOutlinedIcon color="secondary" />
+                            </IconButton>
                             <AccountMenu />
 
                         </>}
@@ -77,9 +86,9 @@ function Layout() {
                     <Container>
                         <Box component='main' sx={{ width: 1, pb: 20 }}>
                             {/* <ChatFab onClick={()}/> */}
-                            <Fab size="large" color="primary" aria-label="chat" onClick={() => setChatDialog(true)}>
+                            {/* <Fab size="large" color="primary" aria-label="chat" onClick={() => setChatDialog(true)}>
                                 <ChatIcon />
-                            </Fab>
+                            </Fab> */}
                             <Outlet />
 
                         </Box>

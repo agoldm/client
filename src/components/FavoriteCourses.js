@@ -3,7 +3,8 @@ import useGet from '../api/hooks/useGet';
 
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Paper, Button, SwipeableDrawer } from '@mui/material';
+import { Box, Typography, Paper, Button, IconButton, Drawer } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
@@ -12,7 +13,7 @@ const Img = styled('img')({
     maxWidth: '100%',
     display: "block"
 });
-function FavoriteCourses() {
+function FavoriteCourses({ open, setOpen }) {
 
     const { data, loading, error } = useGet("users/favorite-course");
 
@@ -24,34 +25,38 @@ function FavoriteCourses() {
     }
 
     return (
-        <div>
+        <Drawer anchor='right' open={open} sx={{ zIndex: 1500 }}>
+            <Box sx={{ width: '30vw',mt:7 }}>
+                <IconButton onClick={() => setOpen(false)} sx={{ position: "absolute", top: 6, left: 6 }}>
+                    <CloseIcon />
+                </IconButton>
+                {data.map((i) => (
+                    <Box sx={{ width: 0.9, m: 5 }}>
+                        <Grid container spacing={5}>
+                            <Grid item xs={10}>
+                                <Paper elevation={4}>
+                                    <Typography gutterBottom variant="subtitle1" component="div">
+                                        {i.name}
 
-            {data.map((i) => (
-                <Box sx={{ width: 0.9, m: 5 }}>
-                    <Grid container spacing={5}>
-                        <Grid item xs={10}>
-                            <Paper elevation={4}>
-                                <Typography gutterBottom variant="subtitle1" component="div">
-                                    {i.name}
-
-                                </Typography>
-                                <Button color="primary" size="small"
-                                // onClick={() => setLoginDialog(true)}
-                                >
-                                    מחיקה
-                                </Button>
-                                <Button variant="contained" color="primary" size="small"
-                                // onClick={() => setRegisterDialog(true)}
-                                >
-                                    הרשמה
-                                </Button>
-                            </Paper>
+                                    </Typography>
+                                    <Button color="primary" size="small"
+                                    // onClick={() => setLoginDialog(true)}
+                                    >
+                                        מחיקה
+                                    </Button>
+                                    <Button variant="contained" color="primary" size="small"
+                                    // onClick={() => setRegisterDialog(true)}
+                                    >
+                                        הרשמה
+                                    </Button>
+                                </Paper>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Box>
+                    </Box>
 
-            ))}
-        </div >
+                ))}
+            </Box>
+        </Drawer>
     );
 }
 export default FavoriteCourses;
