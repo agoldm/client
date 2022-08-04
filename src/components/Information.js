@@ -81,7 +81,7 @@ function Information() {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                     <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                        <Typography>האם אפשר לבטל רישום של קורס במידה ואני לא מעוניין ?</Typography>
+                        <Typography>האם אפשר לבטל רישום של שיעור במידה ואני לא מעוניין ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>

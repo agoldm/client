@@ -52,7 +52,7 @@ function SideBarMenu() {
 
     {
         (role == 'teacher') && itemsList.push({
-            lable: "ניהול קורסיםּ",
+            lable: "ניהול שיעורים",
             to: "/teacher-deshboard",
             icon: <AssignmentTurnedInOutlinedIcon />,
             role: ""
@@ -60,7 +60,7 @@ function SideBarMenu() {
     };
     {
         (role == 'admin') && itemsList.push({
-            lable: "ניהול קורסיםּ",
+            lable: "ניהול שיעורים",
             to: "/admin-deshboard",
             icon: <AssignmentTurnedInOutlinedIcon />,
             role: ""
@@ -70,6 +70,14 @@ function SideBarMenu() {
         (role == 'admin') && itemsList.push({
             lable: "ניהול תלמידים",
             to: "/all-students",
+            icon: <AssignmentTurnedInOutlinedIcon />,
+            role: ""
+        })
+    };
+    {
+        (role == 'admin') && itemsList.push({
+            lable: "ניהול מורים",
+            to: "/all-teachers",
             icon: <AssignmentTurnedInOutlinedIcon />,
             role: ""
         })

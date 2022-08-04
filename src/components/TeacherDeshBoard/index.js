@@ -33,7 +33,7 @@ function TeacherDeshBoard() {
         return (<p>error..</p>)
     }
     const columns = [
-        { key: "name", title: "שם הקורס" },
+        { key: "name", title: "שם השיעור" },
         { key: "category", title: "קטגוריה" },
         { key: "description", title: "תיאור" },
         { key: "long", title: "משך זמן" },
@@ -69,7 +69,7 @@ function TeacherDeshBoard() {
             <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
-                    <Typography variant='h3'>הקורסים שלי</Typography>
+                    <Typography variant='h3'>השיעורים שלי</Typography>
                 </Grid>
                 <Grid item xs={2}>
                     <Button
@@ -81,7 +81,7 @@ function TeacherDeshBoard() {
                             setCourseOpen(true)
                         }}
                     >
-                        הוספת קורס
+                        הוספת שיעור
                     </Button>
                 </Grid>
             </Grid>

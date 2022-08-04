@@ -7,9 +7,9 @@ import useGet from '../../api/hooks/useGet';
 import DeleteForm from '../DeleteForm';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import StudentForm from './StudentForm';
-function AllStudents() {
+function AllTeachers() {
 
-    const { getData, data, loading, error } = useGet("users/students");
+    const { getData, data, loading, error } = useGet("users/teachers");
 
     const [currentID, setCurrentID] = React.useState(null);
     const [deleteFormOpen, setDeleteOpen] = React.useState(false);
@@ -28,7 +28,7 @@ function AllStudents() {
         { key: "name", title: "שם" },
         { key: "email", title: "אימייל" },
         { key: "phone", title: "טלפון" },
-        { key: "description", title: "תאור" },
+        { key: "gender", title: "מגדר" },
         {
             title: "", cb: (row) => {
                 return (
@@ -59,7 +59,7 @@ function AllStudents() {
             <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
-                    <Typography variant='h3'>ניהול תלמידים</Typography>
+                    <Typography variant='h3'>ניהול מורים</Typography>
 
                 </Grid>
             </Grid>
@@ -67,4 +67,4 @@ function AllStudents() {
         </Box>
     )
 }
-export default AllStudents;
+export default AllTeachers;

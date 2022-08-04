@@ -66,7 +66,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                 <CloseIcon />
             </IconButton>
             <DialogTitle>
-                הוספת קורס חדש
+                הוספת שיעור חדש
             </DialogTitle>
             <DialogContent>
                 <Box component='form' sx={{ width: 0.7, m: "auto" }} onSubmit={onSubmit}>
@@ -76,7 +76,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                 <TextField
                                     required
                                     variant='outlined'
-                                    label='שם הקורס'
+                                    label='שם השיעור'
                                     name="name"
                                     value={inputs['name'] || ""}
                                     onChange={onChange}
@@ -176,7 +176,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                 </Box>
                 <Box>
                     {(data && data.success) && <Alert variant="filled" severity="success">
-                        הקורס נוסף בהצלחה
+                        השיעור נוסף בהצלחה
                     </Alert>}
                 </Box>
             </DialogContent>

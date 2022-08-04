@@ -22,7 +22,7 @@ function StudentDeshBoard() {
         { key: "name", title: "שם" },
         { key: "email", title: "אימייל" },
         { key: "phone", title: "טלפון" },
-        { key: "gender", title: "מגדר" },
+        { key: "description", title: "תאור" },
         {
             title: "", cb: (row) => {
                 return (
