@@ -6,13 +6,13 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import MuiTable from '../tables/MuiTable';
 import useGet from '../../api/hooks/useGet';
 import { formatCurrency, formatDateIL } from '../../utils/helper';
-import CourseForm from './CourseForm';
+import CourseForm from '../TeacherDeshBoard/CourseForm';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteForm from '../DeleteForm';
 
-function TeacherDeshBoard() {
+function AdminDeshBoard() {
 
-    const { getData, data, loading, error } = useGet("courses/my-courses");
+    const { getData, data, loading, error } = useGet("courses");
 
     const [currentID, setCurrentID] = React.useState(null);
 
@@ -69,7 +69,7 @@ function TeacherDeshBoard() {
             <DeleteForm open={deleteFormOpen} setOpen={setDeleteOpen} id={currentID} getData={getData}></DeleteForm>
             <Grid container spacing={2}>
                 <Grid item xs={10}>
-                    <Typography variant='h3'>השיעורים שלי</Typography>
+                    <Typography variant='h3'>ניהול שיעורים</Typography>
                 </Grid>
                 <Grid item xs={2}>
                     <Button
@@ -89,4 +89,4 @@ function TeacherDeshBoard() {
         </Box>
     )
 }
-export default TeacherDeshBoard;
+export default AdminDeshBoard;

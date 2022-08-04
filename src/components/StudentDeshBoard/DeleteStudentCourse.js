@@ -1,13 +1,12 @@
 import * as React from 'react';
 
 import { Button, Dialog, DialogContent, DialogTitle, DialogActions } from '@mui/material';
+import usePost from '../../api/hooks/usePost';
 
-import http from "../api/http"
-
-function DeleteForm({ open, setOpen, id, getData }) {
+function DeleteStudentForm({ open, setOpen, id, getData }) {
 
     const [inputs, setInputs] = React.useState({});
-
+    const deleteCourse = usePost("courses/delete-student-from-course");
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -18,7 +17,7 @@ function DeleteForm({ open, setOpen, id, getData }) {
 
     const handleDelete = async () => {
         try {
-            let res = await http.delete("courses/" + id)
+            await deleteCourse.getData({ courseId: id });
         } finally {
             getData();
             setOpen(false)
@@ -46,4 +45,4 @@ function DeleteForm({ open, setOpen, id, getData }) {
         </div >
     )
 }
-export default DeleteForm;
+export default DeleteStudentForm;

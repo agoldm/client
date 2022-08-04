@@ -2,10 +2,8 @@ import React from "react";
 
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, Box, TextField, Grid, Stack, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import usePost from '../../api/hooks/usePost';
 import { uploadFile } from '../../api/http'
 import { formatDateJS } from "../../utils/helper"
-import usePut from "../../api/hooks/usePut";
 import useHttp from "../../api/hooks/useHttp";
 
 
@@ -13,7 +11,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
 
     const [method, setMethod] = React.useState("POST");
     const [inputs, setInputs] = React.useState({});
-    const [image, setImage] = React.useState(null)
+    const [image, setImage] = React.useState(null);
 
     const { getData, data, loading, error, setError, init } = useHttp("courses/", method);
 
@@ -68,7 +66,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                 <CloseIcon />
             </IconButton>
             <DialogTitle>
-                הוספת קורס חדש
+                הוספת שיעור חדש
             </DialogTitle>
             <DialogContent>
                 <Box component='form' sx={{ width: 0.7, m: "auto" }} onSubmit={onSubmit}>
@@ -78,7 +76,7 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                 <TextField
                                     required
                                     variant='outlined'
-                                    label='שם הקורס'
+                                    label='שם השיעור'
                                     name="name"
                                     value={inputs['name'] || ""}
                                     onChange={onChange}
@@ -170,13 +168,15 @@ function CourseForm({ open, setOpen, initInputs, isNew }) {
                                         type="file"
                                         hidden
                                     /></Button>
+
+
                             </Stack>
                         </Grid>
                     </Grid>
                 </Box>
                 <Box>
                     {(data && data.success) && <Alert variant="filled" severity="success">
-                        הקורס נוסף בהצלחה
+                        השיעור נוסף בהצלחה
                     </Alert>}
                 </Box>
             </DialogContent>

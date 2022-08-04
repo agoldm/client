@@ -34,7 +34,7 @@ function Home() {
                 </Stack>
             </Grid>
             <Grid item xs={7}>
-                <img style={{ alignSelf: 'center' }} block src={loadingGif} alt="wait until the page loads" />
+                <img style={{ alignSelf: 'center' }} src={loadingGif} alt="wait until the page loads" />
             </Grid>
         </Grid>
     );
