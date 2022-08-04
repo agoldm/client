@@ -6,20 +6,23 @@ import { styled } from '@mui/material/styles';
 import { Box, Typography, Paper, Button, IconButton, Drawer, Alert, Stack, CircularProgress } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import useDelete from '../api/hooks/useDelete';
-
+import Context from '../context';
 function FavoriteCourses({ open, setOpen }) {
 
     const { getData, data, loading, error } = useGet("users/favorite-course");
     const signCourse = usePost("courses/signCourse");
     const deleteFavoriteCourse = useDelete("users/favorite-course");
+    const { setFavoriteChange } = React.useContext(Context);
 
     const courseAdd = async (courseId) => {
         await signCourse.getData({ courseId: courseId });
         await deleteFavoriteCourse.getData({ courseId: courseId });
+        setFavoriteChange(old => old + 1)
         getData()
     }
     const courseDelete = async (courseId) => {
         await deleteFavoriteCourse.getData({ courseId: courseId });
+        setFavoriteChange(old => old - 1)
         getData()
     }
 

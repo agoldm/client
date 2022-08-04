@@ -10,7 +10,7 @@ function Courses() {
 
     const { data, loading, error } = useGet("courses");
     const addFavorite = usePost("users/favorite-course");
-    const { role } = React.useContext(Context);
+    const { role,setFavoriteChange } = React.useContext(Context);
 
     const courseAdd = (itemId) => {
         addFavorite.getData({ courseId: itemId });
@@ -57,6 +57,7 @@ function Courses() {
                                 </CardActionArea>
                                 <CardActions>
                                     {(role == 'student') && <Button size="small" color="primary" onClick={(e) => {
+                                        setFavoriteChange(old=>old+1);
                                         courseAdd(item._id)
                                     }} >
                                         הירשם

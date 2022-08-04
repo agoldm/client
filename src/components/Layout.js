@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Stack, Grid, Container, AppBar, Button, Drawer, IconButton } from '@mui/material';
+import { Box, Typography, Stack, Grid, Container, AppBar, Button, Drawer, IconButton, Badge } from '@mui/material';
 import AccountMenu from "./AccountMenu";
 import NavTabs from "./NavTabs";
 import SideBarMenu from "./SideBarMenu";
@@ -66,15 +66,11 @@ function Layout() {
 
 
                             {(role == 'student') &&
-                                <sup>
-                                    <FavoriteNumber />
-                                </sup>
+
+                                <FavoriteNumber setFavoriteOpen={setFavoriteOpen} />
+
                             }
-                            {(role == 'student') &&
-                                <IconButton onClick={() => setFavoriteOpen(true)}>
-                                    <AddShoppingCartOutlinedIcon color="secondary" />
-                                </IconButton>
-                            }
+
 
                             <AccountMenu />
 

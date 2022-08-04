@@ -5,6 +5,8 @@ function ContextProvider({ children }) {
 
     const [user, setUser] = React.useState(null);
     const [role, setRole] = React.useState(null);
+    const [favoriteChange, setFavoriteChange] = React.useState(0);
+
 
     React.useEffect(() => {
         let user = localStorage.getItem("token");
@@ -20,7 +22,9 @@ function ContextProvider({ children }) {
             user,
             setUser,
             role,
-            setRole
+            setRole,
+            favoriteChange,
+            setFavoriteChange
         }}>
             {children}
         </Context.Provider>
