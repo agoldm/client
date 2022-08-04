@@ -58,6 +58,22 @@ function SideBarMenu() {
             role: ""
         })
     };
+    {
+        (role == 'admin') && itemsList.push({
+            lable: "ניהול קורסיםּ",
+            to: "/admin-deshboard",
+            icon: <AssignmentTurnedInOutlinedIcon />,
+            role: ""
+        })
+    };
+    {
+        (role == 'admin') && itemsList.push({
+            lable: "ניהול תלמידים",
+            to: "/all-students",
+            icon: <AssignmentTurnedInOutlinedIcon />,
+            role: ""
+        })
+    };
 
     return (
         <Box sx={{ width: '15vw', pt: 10, pr: 5, bgcolor: '#EBF2FF', height: 1 }}>

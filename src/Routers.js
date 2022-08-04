@@ -12,6 +12,8 @@ import Profile from "./components/Profile";
 import FavoriteCourses from "./components/FavoriteCourses";
 import MyStudents from "./components/TeacherDeshBoard/MyStudents";
 import StudentsCourses from "./components/StudentDeshBoard/StudentCourses";
+import AdminDeshBoard from "./components/AdminDeshBoard";
+import AllStudents from "./components/AdminDeshBoard/AllStudents";
 
 function Routers() {
     return (
@@ -22,7 +24,9 @@ function Routers() {
                 <Route path="/teachers" element={<Teachers />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/teacher-deshboard" element={<TeacherDeshBoard />} />
+                <Route path="/admin-deshboard" element={<AdminDeshBoard />} />
                 <Route path="/my-students" element={<MyStudents />} />
+                <Route path="/all-students" element={<AllStudents />} />
                 <Route path="/student-deshboard" element={<StudentDeshBoard />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/information" element={<Information />} />
