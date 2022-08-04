@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Box, TextField, Button, Alert, Stack, Dialog, DialogTitle, DialogContent, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,7 +22,7 @@ function Login({ open, setOpen }) {
     }
 
     //לעדכן בקונטקסט אישור יוזר
-    useEffect(() => {
+    React.useEffect(() => {
         setUser(null)
         if (data && data.token) {
             localStorage.setItem("token", data.token);
@@ -33,7 +33,7 @@ function Login({ open, setOpen }) {
         }
     }, [data]);
 
-    useEffect(() => {
+    React.useEffect(() => {
 
     }, [resetPassword.data])
 

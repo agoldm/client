@@ -63,15 +63,19 @@ function Layout() {
                             </Button>
                         </>}
                         {user && <>
-                            {/* <sup>1</sup> */}
+
+
+                            {(role == 'student') &&
+                                <sup>
+                                    <FavoriteNumber />
+                                </sup>
+                            }
                             {(role == 'student') &&
                                 <IconButton onClick={() => setFavoriteOpen(true)}>
                                     <AddShoppingCartOutlinedIcon color="secondary" />
                                 </IconButton>
                             }
-                            {(role == 'student') &&
-                                <FavoriteNumber />
-                            }
+
                             <AccountMenu />
 
                         </>}
